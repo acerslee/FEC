@@ -16,7 +16,7 @@ const Overview = ({product_id}) => {
       })
       .then(styles => setCurrentProductStyles(styles.data))
       .catch(err => console.error('Cannot retrieve Product Info', err))
-  }, [])
+  }, [product_id]);
 
   return(
     <section className = 'overview-section'>
