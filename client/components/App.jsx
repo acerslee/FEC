@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      product_id: 21114,
+      product_id: 24156,
     }
   }
 
@@ -21,7 +21,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <div className = 'overview-flexbox'>
           <Overview product_id={this.state.product_id} />
         </div>
@@ -35,7 +35,7 @@ class App extends React.Component {
         <Questions product_id={this.state.product_id} />
         <Reviews product_id={this.state.product_id} />
         <div style={{ marginBottom: "200px" }}></div>
-      </div>
+      </>
     );
   }
 }

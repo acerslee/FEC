@@ -19,6 +19,7 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
   const relatedIdFunction = async () => {
     await api.getRelatedProductIds(product_id)
       .then(res => {
+          console.log(res);
           let distinctRelatedItems = [...new Set(res.data)]
           //removeDuplicateRender ensures the current product DOES NOT appear in the relatedproducts list
           let removeDuplicateRender = distinctRelatedItems.filter(outfitId => outfitId !== product_id);
