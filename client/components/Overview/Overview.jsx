@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Images from './Images.jsx';
+import Styles from './Styles.jsx';
 import api from '../../../api.js';
 
 const Overview = ({product_id}) => {
@@ -20,7 +21,10 @@ const Overview = ({product_id}) => {
   return(
     <section className = 'overview-section'>
       {Object.keys(currentProductStyles).length &&
-        <Images currentProductStyles = {currentProductStyles}/>
+        <>
+          <Images currentProductStyles = {currentProductStyles} />
+          <Styles currentProductStyles = {currentProductStyles} />
+        </>
       }
     </section>
   )

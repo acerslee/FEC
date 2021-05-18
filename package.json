@@ -50,6 +50,7 @@
     "react-dom": "^16.13.1",
     "react-modal": "^3.12.1",
     "regenerator-runtime": "^0.10.5",
+    "styled-components": "^5.3.0",
     "use-local-storage-state": "^9.0.2"
   },
   "devDependencies": {
