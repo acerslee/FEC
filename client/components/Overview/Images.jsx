@@ -1,14 +1,20 @@
 import React, {useState, useEffect} from 'react';
 
-const Images = ({currentProductStyles}) => {
+const Images = ({currentProductStyles, currentImageSet}) => {
   // console.log('styles', currentProductStyles)
+  console.log('currentimage', currentImageSet);
 
-  const [currentImage, setCurrentImage] = useState('');
+  const [currentMainImage, setCurrentMainImage] = useState('');
   const [currentMiniImages, setCurrentMiniImages] = useState();
 
   useEffect(() => {
-    setCurrentImage(currentProductStyles.results[0].photos[0].thumbnail_url)
+    setCurrentMainImage(currentProductStyles.results[0].photos[0].thumbnail_url)
   },[currentProductStyles])
+
+
+  let currentImage;
+  if (Object.keys(currentImageSet).length) currentImage = currentImageSet[0].thumbnail_url;
+  else currentImage = currentMainImage;
 
   return(
     <div className = 'images'>

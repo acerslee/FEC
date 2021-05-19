@@ -12,7 +12,7 @@ const StylesImage = styled.img`
   width: 4em;
 `;
 
-const Styles = ({currentProductStyles}) => {
+const Styles = ({currentProductStyles, changeMainPicture}) => {
   return(
     <StylesContainer>
       {currentProductStyles.results.map(style => {
@@ -21,6 +21,7 @@ const Styles = ({currentProductStyles}) => {
             key = {style.style_id}
             src = {style.photos[0].thumbnail_url}
             alt = 'style-photo'
+            onClick = {() => changeMainPicture(style.style_id)}
           />
         )
       })}

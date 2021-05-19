@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Images from './Images.jsx';
 import Styles from './Styles.jsx';
+import BottomSection from './BottomSection.jsx';
 import api from '../../../api.js';
 import styled from 'styled-components';
 
@@ -25,6 +26,7 @@ const BottomContainer = styled.div`
 const Overview = ({product_id}) => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductStyles, setCurrentProductStyles] = useState({});
+  const [currentImageSet, setCurrentImageSet] = useState({});
 
   //get current product info & its styles
   useEffect(() => {
@@ -37,28 +39,40 @@ const Overview = ({product_id}) => {
       .catch(err => console.error('Cannot retrieve Product Info', err))
   }, [product_id]);
 
-  console.log(currentProduct);
+  const changeMainPicture = (style_id) => {
+    // console.log(style_id)
+    // console.log(currentProductStyles.results);
+    for (let i = 0; i < currentProductStyles.results.length; i++) {
+      // console.log(currentProductStyles.results[i])
+
+      if (currentProductStyles.results[i].style_id === style_id){
+        setCurrentImageSet(currentProductStyles.results[i].photos)
+      }
+    }
+  };
+
+  // console.log(currentProduct);
+  // console.log('style', currentProductStyles);
   return(
     <>
       <OverviewContainer>
         {Object.keys(currentProductStyles).length &&
           <>
             <ImageOverviewContainer>
-              <Images currentProductStyles = {currentProductStyles} />
+              <Images currentProductStyles = {currentProductStyles} currentImageSet = {currentImageSet} />
             </ImageOverviewContainer>
             <RightSideOverview>
               <p>{currentProduct.category}</p>
               <h1>{currentProduct.name}</h1>
               <p>{currentProduct.default_price}</p>
-              <Styles currentProductStyles = {currentProductStyles} />
+              <Styles currentProductStyles = {currentProductStyles} changeMainPicture = {changeMainPicture}/>
             </RightSideOverview>
           </>
         }
       </OverviewContainer>
       {Object.keys(currentProduct).length &&
         <BottomContainer>
-          <h2>{currentProduct.slogan}</h2>
-          <p>{currentProduct.description}</p>
+          <BottomSection currentProduct = {currentProduct} />
         </BottomContainer>
       }
     </>

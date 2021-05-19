@@ -1,11 +1,16 @@
-import React from "react";
+import React, {Component} from "react";
 import RelatedList from "./relatedproducts/related-product-list.jsx";
 import YourOutfitList from "./relatedproducts/your-outfit-list.jsx";
 import Questions from "./Questions/Questions.jsx";
 import Reviews from "./Reviews/reviews.jsx";
 import Overview from "./Overview/Overview.jsx";
+import styled from 'styled-components';
 
-class App extends React.Component {
+const Header = styled.div`
+  background-color: green;
+`;
+
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -22,6 +27,9 @@ class App extends React.Component {
   render() {
     return (
       <>
+        <Header>
+          <h1>Catwalk</h1>
+        </Header>
         <div className = 'overview-flexbox'>
           <Overview product_id={this.state.product_id} />
         </div>
