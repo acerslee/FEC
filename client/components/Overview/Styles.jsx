@@ -3,7 +3,12 @@ import styled from 'styled-components';
 
 const StylesContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+`;
+
+const ImageContainer = styled.div`
+  display: flex;
+  flex-direction:row;
 `;
 
 const StylesImage = styled.img`
@@ -12,19 +17,23 @@ const StylesImage = styled.img`
   width: 4em;
 `;
 
-const Styles = ({currentProductStyles, changeMainPicture}) => {
+const Styles = ({currentProductStyles, changeMainPicture, currentImageSet}) => {
+
   return(
     <StylesContainer>
-      {currentProductStyles.results.map(style => {
-        return(
-          <StylesImage
-            key = {style.style_id}
-            src = {style.photos[0].thumbnail_url}
-            alt = 'style-photo'
-            onClick = {() => changeMainPicture(style.style_id)}
-          />
-        )
-      })}
+      <p>{currentImageSet.name}</p>
+      <ImageContainer>
+        {currentProductStyles.results.map(style => {
+          return(
+            <StylesImage
+              key = {style.style_id}
+              src = {style.photos[0].thumbnail_url}
+              alt = 'style-photo'
+              onClick = {() => changeMainPicture(style.style_id)}
+            />
+          )
+        })}
+      </ImageContainer>
     </StylesContainer>
   )
 };

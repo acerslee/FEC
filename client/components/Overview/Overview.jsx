@@ -43,10 +43,10 @@ const Overview = ({product_id}) => {
     // console.log(style_id)
     // console.log(currentProductStyles.results);
     for (let i = 0; i < currentProductStyles.results.length; i++) {
-      // console.log(currentProductStyles.results[i])
+      console.log(currentProductStyles.results[i])
 
       if (currentProductStyles.results[i].style_id === style_id){
-        setCurrentImageSet(currentProductStyles.results[i].photos)
+        setCurrentImageSet(currentProductStyles.results[i])
       }
     }
   };
@@ -65,7 +65,11 @@ const Overview = ({product_id}) => {
               <p>{currentProduct.category}</p>
               <h1>{currentProduct.name}</h1>
               <p>{currentProduct.default_price}</p>
-              <Styles currentProductStyles = {currentProductStyles} changeMainPicture = {changeMainPicture}/>
+              <Styles
+                currentProductStyles = {currentProductStyles}
+                changeMainPicture = {changeMainPicture}
+                currentImageSet = {currentImageSet}
+              />
             </RightSideOverview>
           </>
         }
