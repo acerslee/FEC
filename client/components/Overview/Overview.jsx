@@ -43,8 +43,6 @@ const Overview = ({product_id}) => {
     // console.log(style_id)
     // console.log(currentProductStyles.results);
     for (let i = 0; i < currentProductStyles.results.length; i++) {
-      console.log(currentProductStyles.results[i])
-
       if (currentProductStyles.results[i].style_id === style_id){
         setCurrentImageSet(currentProductStyles.results[i])
       }
