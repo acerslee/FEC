@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import TOKEN from '../../../token.js';
 import ReviewCard from './reviewCard.jsx';
 import Ratings from './ratings.jsx';
 import NewReview from './newReview.jsx';
@@ -12,8 +11,6 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Modal from "@material-ui/core/Modal";
-
-const axios = require('axios').default;
 
 const useStyles = makeStyles((theme) => ({
   root: {

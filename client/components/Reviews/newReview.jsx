@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import TOKEN from '../../../token.js';
 import API from '../../../api.js';
 import { HoverRating } from '../../starRating.jsx';
-const axios = require('axios').default;
 
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";

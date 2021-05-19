@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import TOKEN from '../../../token.js'
 import API from '../../../api.js';
 import { StaticRating } from '../../starRating.jsx';
 import Body from './body.jsx';
 import ImageModal from './ImageModal.jsx';
-const axios = require('axios').default;
 var moment = require('moment');
 
 import { makeStyles } from "@material-ui/core/styles";

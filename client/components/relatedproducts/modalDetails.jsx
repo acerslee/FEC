@@ -14,12 +14,9 @@ const ModalDetails = ({currentProduct, currentProductStyles, relatedItemsStyles,
     },
   });
 
-    console.log('currentproductstyles', currentProductStyles)
-    console.log('realtedItemsStyles', relatedItemsStyles)
-
   const classes = useStyles();
 
-  function createData(compare_item_details, comparison, current_item_details) {
+  const createData = (compare_item_details, comparison, current_item_details) => {
     if(!Array.isArray(compare_item_details) && !Array.isArray(current_item_details)) {
       return { compare_item_details, comparison, current_item_details}
     }
