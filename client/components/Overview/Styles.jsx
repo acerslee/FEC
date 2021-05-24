@@ -1,5 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const StylesContainer = styled.div`
   display: flex;
@@ -20,6 +24,17 @@ const StylesImage = styled.img`
 
 const Styles = ({currentProductStyles, changeMainPicture, currentImageSet}) => {
 
+  const [size, setSize] = useState('');
+  const [quantity, setQuantity] = useState(1);
+
+  const handleSizeChange = event => {
+    setSize(event.target.value)
+  };
+
+  const handleQuantityChange = event => {
+    setQuantity(event.target.value)
+  };
+
   let productStyle;
   if (!Object.keys(currentImageSet).length) productStyle = currentProductStyles.results[0].name;
   else productStyle = currentImageSet.name;
@@ -39,6 +54,35 @@ const Styles = ({currentProductStyles, changeMainPicture, currentImageSet}) => {
           )
         })}
       </ImageContainer>
+      <FormControl>
+        <InputLabel>Select Size</InputLabel>
+        <Select
+          labelId = 'size-selected-label'
+          value = {size}
+          onChange = {handleSizeChange}
+        >
+          <MenuItem value = ''>Select Size</MenuItem>
+          <MenuItem value = {'XS'}>Extra Small</MenuItem>
+          <MenuItem value = {'S'}>Small</MenuItem>
+          <MenuItem value = {'M'}>Medium</MenuItem>
+          <MenuItem value = {'L'}>Large</MenuItem>
+          <MenuItem value = {'XL'}>Extra Large</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl>
+        <InputLabel>Select Quantity</InputLabel>
+        <Select
+            labelId = 'size-selected-label'
+            value = {quantity}
+            onChange = {handleQuantityChange}
+        >
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+        </Select>
+      </FormControl>
     </StylesContainer>
   )
 };

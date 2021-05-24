@@ -21,7 +21,6 @@ const OverviewImage = styled.img`
 const MiniImagesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   position: absolute;
   top: 5%;
   left: 5%;
@@ -61,7 +60,6 @@ const Images = ({currentProductStyles, currentImageSet}) => {
   const [currentMainImage, setCurrentMainImage] = useState('');
   const [currentImageStyleSet, setCurrentImageStyleSet] = useState([]);
   const [styleDescription, setStyleDescription] = useState('');
-  const [currentThumbnailImage, setCurrentThumbnailImage] = useState('');
 
   //carousel states
   const [index, setIndex] = useState(0);
@@ -114,21 +112,16 @@ const Images = ({currentProductStyles, currentImageSet}) => {
             <img className = {classes.fullSize} src = {currentMainImage} />
           </div>
         </Modal>
-
-
-        {Object.keys(currentImageStyleSet).length &&
-          <MiniImagesContainer>
-            {console.log('jsx', currentImageStyleSet)}
-            {currentImageStyleSet.map((styleimage, index) => (
-              <MiniImageStyle
-                key = {index}
-                src = {styleimage.thumbnail_url}
-                alt = 'style mini thumbnails'
-                onClick = {() => handleMiniImageClick(styleimage.thumbnail_url)}
-              />
-            ))}
-          </MiniImagesContainer>
-        }
+        <MiniImagesContainer>
+          {currentImageStyleSet.map((styleimage, index) => (
+            <MiniImageStyle
+              key = {index}
+              src = {styleimage.thumbnail_url}
+              alt = 'style mini thumbnails'
+              onClick = {() => handleMiniImageClick(styleimage.thumbnail_url)}
+            />
+          ))}
+        </MiniImagesContainer>
       {/* </Carousel> */}
     </ImageContainer>
   )
