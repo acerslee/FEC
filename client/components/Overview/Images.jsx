@@ -3,13 +3,37 @@ import styled from 'styled-components';
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Link from "@material-ui/core/Link";
+import {FaExpand} from 'react-icons/fa'
+import Carousel from 'react-bootstrap/Carousel';
 
-const OverviewImage = styled.img`
+
+const ImageContainer = styled.div`
   height: 40rem;
   width: 40rem;
+  position: relative;
 `;
 
-const useStyles = makeStyles((theme) => ({
+const OverviewImage = styled.img`
+  height: 100%;
+  width: 100%;
+`;
+
+const MiniImagesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+`;
+
+const MiniImageStyle = styled.img`
+  height: 3.5em;
+  width: 3.5em;
+  margin-top: 1em;
+`;
+
+const useStyles = makeStyles(theme => ({
   paper: {
     position: "absolute",
     backgroundColor: theme.palette.background.paper,
@@ -26,8 +50,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Images = ({currentProductStyles, currentImageSet}) => {
-  // console.log('styles', currentProductStyles)
-  // console.log('currentimage', currentImageSet);
   const classes = useStyles();
   const [modalStyle] = useState({
     top: '50%',
@@ -37,8 +59,16 @@ const Images = ({currentProductStyles, currentImageSet}) => {
   const [open, setOpen] = useState(false);
 
   const [currentMainImage, setCurrentMainImage] = useState('');
+  const [currentImageStyleSet, setCurrentImageStyleSet] = useState([]);
   const [styleDescription, setStyleDescription] = useState('');
-  // const [currentMiniImages, setCurrentMiniImages] = useState();
+  const [currentThumbnailImage, setCurrentThumbnailImage] = useState('');
+
+  //carousel states
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
 
   const handleOpen = () => {
     setOpen(!open)
@@ -48,31 +78,59 @@ const Images = ({currentProductStyles, currentImageSet}) => {
     setOpen(!open)
   };
 
+  const handleMiniImageClick = (thumbnail) => {
+    setCurrentMainImage(thumbnail);
+  };
+
   useEffect(() => {
-    setCurrentMainImage(currentProductStyles.results[0].photos[0].thumbnail_url);
-    console.log('does this run')
-    currentImageSet = null;
-  },[currentProductStyles])
-
-
-  let currentImage;
-  if (Object.keys(currentImageSet).length) currentImage = currentImageSet.photos[0].thumbnail_url;
-  else currentImage = currentMainImage;
+    if (!Object.keys(currentImageSet).length){
+      setCurrentMainImage(currentProductStyles.results[0].photos[0].thumbnail_url)
+      setCurrentImageStyleSet(currentProductStyles.results[0].photos)
+    } else {
+      setCurrentMainImage(currentImageSet.photos[0].thumbnail_url)
+      setCurrentImageStyleSet(currentImageSet.photos);
+    }
+  },[currentImageSet])
 
   return(
-    <div className = 'images'>
-      <Link
-        target = '_blank'
-        onClick = {handleOpen}
-      >
-        <OverviewImage src = {currentImage} alt = 'cloth-image' />
-      </Link>
-      <Modal open = {open} onClose = {handleClose}>
-        <div style = {modalStyle} className = {classes.paper}>
-          <img className = {classes.fullSize} src = {currentImage} />
-        </div>
-      </Modal>
-    </div>
+    <ImageContainer>
+      {/* <Carousel activeIndex = {index} onSelect = {handleSelect}> */}
+        <Link
+          target = '_blank'
+          onClick = {handleOpen}
+        >
+          <FaExpand
+            style = {{
+              position: 'relative',
+              left: '95%',
+              top: '8%'
+            }}
+          />
+        </Link>
+
+        <OverviewImage src = {currentMainImage} alt = 'cloth-image' />
+        <Modal open = {open} onClose = {handleClose}>
+          <div style = {modalStyle} className = {classes.paper}>
+            <img className = {classes.fullSize} src = {currentMainImage} />
+          </div>
+        </Modal>
+
+
+        {Object.keys(currentImageStyleSet).length &&
+          <MiniImagesContainer>
+            {console.log('jsx', currentImageStyleSet)}
+            {currentImageStyleSet.map((styleimage, index) => (
+              <MiniImageStyle
+                key = {index}
+                src = {styleimage.thumbnail_url}
+                alt = 'style mini thumbnails'
+                onClick = {() => handleMiniImageClick(styleimage.thumbnail_url)}
+              />
+            ))}
+          </MiniImagesContainer>
+        }
+      {/* </Carousel> */}
+    </ImageContainer>
   )
 };
 

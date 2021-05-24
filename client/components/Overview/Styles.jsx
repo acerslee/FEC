@@ -7,12 +7,13 @@ const StylesContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  display: flex;
-  flex-direction:row;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
 `;
 
 const StylesImage = styled.img`
   border-radius: 50px;
+  margin: 0.5rem;
   height: 4em;
   width: 4em;
 `;
