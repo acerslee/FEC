@@ -22,6 +22,7 @@ const Overview = ({product_id}) => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductStyles, setCurrentProductStyles] = useState({});
   const [currentImageSet, setCurrentImageSet] = useState({});
+  const [currentStylePrice, setCurrentStylePrice] = useState({});
 
   //get current product info & its styles
   useEffect(() => {
@@ -33,16 +34,26 @@ const Overview = ({product_id}) => {
       .then(styles => {
         setCurrentImageSet(styles.data.results[0])
         setCurrentProductStyles(styles.data)
+        setCurrentStylePrice({
+          ...currentStylePrice,
+          original_price: styles.data.results[0].original_price,
+          sale_price: styles.data.results[0].sale_price
+        })
       })
       .catch(err => console.error('Cannot retrieve Product Info', err))
   }, [product_id]);
 
-  const changeMainPicture = (style_id) => {
+  const changeStyleDetail = style_id => {
     // console.log(style_id)
-    // console.log(currentProductStyles.results);
+    console.log(currentProductStyles.results);
     for (let i = 0; i < currentProductStyles.results.length; i++) {
       if (currentProductStyles.results[i].style_id === style_id){
         setCurrentImageSet(currentProductStyles.results[i])
+        setCurrentStylePrice({
+          ...currentStylePrice,
+          original_price: currentProductStyles.results[i].original_price,
+          sale_price: currentProductStyles.results[i].sale_price,
+        })
       }
     }
   };
@@ -60,8 +71,9 @@ const Overview = ({product_id}) => {
             />
             <Styles
               currentProduct = {currentProduct}
+              currentStylePrice = {currentStylePrice}
               currentProductStyles = {currentProductStyles}
-              changeMainPicture = {changeMainPicture}
+              changeStyleDetail = {changeStyleDetail}
               currentImageSet = {currentImageSet}
             />
           </ImageStyleContainer>

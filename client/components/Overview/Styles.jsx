@@ -5,12 +5,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaPlus } from 'react-icons/fa';
 
 const StylesContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
+`;
+
+const PriceBox = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 const ImageContainer = styled.div`
@@ -30,8 +35,7 @@ const StylesImage = styled.img`
   width: 4em;
 `;
 
-const Styles = ({currentProduct, currentProductStyles, changeMainPicture, currentImageSet}) => {
-
+const Styles = ({currentProduct, currentProductStyles, currentStylePrice, changeStyleDetail, currentImageSet}) => {
   const [size, setSize] = useState('');
   const [quantity, setQuantity] = useState(1);
 
@@ -51,7 +55,16 @@ const Styles = ({currentProduct, currentProductStyles, changeMainPicture, curren
     <StylesContainer>
       <h2>{currentProduct.category}</h2>
       <h1>{currentProduct.name}</h1>
-      <p>{currentProduct.default_price}</p>
+      {currentStylePrice.sale_price === null
+        ? <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentStylePrice.original_price)}</p>
+        :
+          <PriceBox>
+            <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentStylePrice.sale_price)}</p>
+            <p style = {{color: 'red', textDecoration: 'line-through', marginLeft: '0.8em'}}>
+              {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentStylePrice.original_price)}
+            </p>
+          </PriceBox>
+      }
       <p>{productStyle}</p>
       <ImageContainer>
         {currentProductStyles.results.map(style => {
@@ -60,7 +73,7 @@ const Styles = ({currentProduct, currentProductStyles, changeMainPicture, curren
               key = {style.style_id}
               src = {style.photos[0].thumbnail_url}
               alt = 'style-photo'
-              onClick = {() => changeMainPicture(style.style_id)}
+              onClick = {() => changeStyleDetail(style.style_id)}
             />
           )
         })}
@@ -95,7 +108,10 @@ const Styles = ({currentProduct, currentProductStyles, changeMainPicture, curren
           <MenuItem value={5}>5</MenuItem>
         </Select>
       </FormControl>
-      <Button variant = 'contained'>Add To Bag</Button>
+      <Button variant = 'contained'>
+        Add To Bag
+        <FaPlus />
+      </Button>
       <Button variant = 'contained'>
         <FaStar  style = {{width: 'auto'}} />
       </Button>
