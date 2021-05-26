@@ -5,22 +5,17 @@ import BottomSection from './BottomSection.jsx';
 import api from '../../../api.js';
 import styled from 'styled-components';
 
-
-const OverviewContainer = styled.div`
+const OverviewContainer = styled.section`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 50%;
 `;
 
-const ImageOverviewContainer = styled.div`
-
-`;
-
-const RightSideOverview = styled.div`
-
-`;
-
-const BottomContainer = styled.div`
-
+const ImageStyleContainer = styled.div`
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  height: 55%;
 `;
 
 const Overview = ({product_id}) => {
@@ -52,32 +47,25 @@ const Overview = ({product_id}) => {
   // console.log(currentProduct);
   // console.log('style', currentProductStyles);
   return(
-    <>
-      <OverviewContainer>
-        {Object.keys(currentProductStyles).length &&
-          <>
-            <ImageOverviewContainer>
-              <Images currentProductStyles = {currentProductStyles} currentImageSet = {currentImageSet} />
-            </ImageOverviewContainer>
-            <RightSideOverview>
-              <p>{currentProduct.category}</p>
-              <h1>{currentProduct.name}</h1>
-              <p>{currentProduct.default_price}</p>
-              <Styles
-                currentProductStyles = {currentProductStyles}
-                changeMainPicture = {changeMainPicture}
-                currentImageSet = {currentImageSet}
-              />
-            </RightSideOverview>
-          </>
-        }
-      </OverviewContainer>
-      {Object.keys(currentProduct).length &&
-        <BottomContainer>
+    <OverviewContainer>
+      {Object.keys(currentProductStyles).length &&
+        <>
+          <ImageStyleContainer>
+            <Images
+              currentProductStyles = {currentProductStyles}
+              currentImageSet = {currentImageSet}
+            />
+            <Styles
+              currentProduct = {currentProduct}
+              currentProductStyles = {currentProductStyles}
+              changeMainPicture = {changeMainPicture}
+              currentImageSet = {currentImageSet}
+            />
+          </ImageStyleContainer>
           <BottomSection currentProduct = {currentProduct} />
-        </BottomContainer>
+        </>
       }
-    </>
+    </OverviewContainer>
   )
 };
 

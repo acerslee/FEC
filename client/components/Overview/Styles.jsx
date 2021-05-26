@@ -1,18 +1,26 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import { FaStar } from 'react-icons/fa';
 
 const StylesContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 25%;
 `;
 
 const ImageContainer = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto;
+`;
+
+const ListAndButtonsContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
 `;
 
 const StylesImage = styled.img`
@@ -22,7 +30,7 @@ const StylesImage = styled.img`
   width: 4em;
 `;
 
-const Styles = ({currentProductStyles, changeMainPicture, currentImageSet}) => {
+const Styles = ({currentProduct, currentProductStyles, changeMainPicture, currentImageSet}) => {
 
   const [size, setSize] = useState('');
   const [quantity, setQuantity] = useState(1);
@@ -41,6 +49,9 @@ const Styles = ({currentProductStyles, changeMainPicture, currentImageSet}) => {
 
   return(
     <StylesContainer>
+      <h2>{currentProduct.category}</h2>
+      <h1>{currentProduct.name}</h1>
+      <p>{currentProduct.default_price}</p>
       <p>{productStyle}</p>
       <ImageContainer>
         {currentProductStyles.results.map(style => {
@@ -54,6 +65,7 @@ const Styles = ({currentProductStyles, changeMainPicture, currentImageSet}) => {
           )
         })}
       </ImageContainer>
+      <ListAndButtonsContainer>
       <FormControl>
         <InputLabel>Select Size</InputLabel>
         <Select
@@ -83,6 +95,11 @@ const Styles = ({currentProductStyles, changeMainPicture, currentImageSet}) => {
           <MenuItem value={5}>5</MenuItem>
         </Select>
       </FormControl>
+      <Button variant = 'contained'>Add To Bag</Button>
+      <Button variant = 'contained'>
+        <FaStar  style = {{width: 'auto'}} />
+      </Button>
+      </ListAndButtonsContainer>
     </StylesContainer>
   )
 };

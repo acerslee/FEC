@@ -5,16 +5,15 @@ const BottomContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  // justify-content: space-around;
+  justify-content: center;
 `;
 
 const SloganAndDescription = styled.div`
   border-right: 2px solid;
-  width: 60%;
 `;
 
 const Features = styled.div`
-  width: 40%;
+  margin-left: 1em;
 `;
 
 const BottomSection = ({currentProduct}) => {

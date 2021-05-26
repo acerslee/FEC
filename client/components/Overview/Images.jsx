@@ -6,16 +6,14 @@ import Link from "@material-ui/core/Link";
 import {FaExpand} from 'react-icons/fa'
 import Carousel from 'react-bootstrap/Carousel';
 
-
 const ImageContainer = styled.div`
-  height: 40rem;
-  width: 40rem;
   position: relative;
+  width: 40%;
 `;
 
 const OverviewImage = styled.img`
-  height: 100%;
-  width: 100%;
+  height: 45em;
+  width: 45em;
 `;
 
 const MiniImagesContainer = styled.div`
@@ -23,13 +21,22 @@ const MiniImagesContainer = styled.div`
   flex-direction: column;
   position: absolute;
   top: 5%;
-  left: 5%;
+  left: 7%;
 `;
 
 const MiniImageStyle = styled.img`
   height: 3.5em;
   width: 3.5em;
   margin-top: 1em;
+`;
+
+const PhotoExpand = styled(FaExpand)`
+  color: #FEEEEE;
+  height: 2.5em;
+  width: 2.5em;
+  position: relative;
+  left: 80%;
+  bottom: 25vh;
 `;
 
 const useStyles = makeStyles(theme => ({
@@ -93,18 +100,12 @@ const Images = ({currentProductStyles, currentImageSet}) => {
   return(
     <ImageContainer>
       {/* <Carousel activeIndex = {index} onSelect = {handleSelect}> */}
-        <Link
+        {/* <Link
           target = '_blank'
           onClick = {handleOpen}
-        >
-          <FaExpand
-            style = {{
-              position: 'relative',
-              left: '95%',
-              top: '8%'
-            }}
-          />
-        </Link>
+        > */}
+        <PhotoExpand onClick = {handleOpen}/>
+        {/* </Link> */}
 
         <OverviewImage src = {currentMainImage} alt = 'cloth-image' />
         <Modal open = {open} onClose = {handleClose}>

@@ -30,10 +30,8 @@ class App extends Component {
         <Header>
           <h1>Catwalk</h1>
         </Header>
-        <div className = 'overview-flexbox'>
-          <Overview product_id={this.state.product_id} />
-        </div>
-        <div className = 'component-flexbox'>
+        <Overview product_id={this.state.product_id} />
+        {/* <div className = 'component-flexbox'>
           <RelatedList
             product_id={this.state.product_id}
             renderNewProductId={this.renderNewProductId.bind(this)}
@@ -42,7 +40,7 @@ class App extends Component {
         </div>
         <Questions product_id={this.state.product_id} />
         <Reviews product_id={this.state.product_id} />
-        <div style={{ marginBottom: "200px" }}></div>
+        <div style={{ marginBottom: "200px" }}></div> */}
       </>
     );
   }
