@@ -8,12 +8,11 @@ import Carousel from 'react-bootstrap/Carousel';
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 40%;
 `;
 
 const OverviewImage = styled.img`
-  height: 45em;
-  width: 45em;
+  height: 40em;
+  width: 40em;
 `;
 
 const MiniImagesContainer = styled.div`
@@ -35,8 +34,8 @@ const PhotoExpand = styled(FaExpand)`
   height: 2.5em;
   width: 2.5em;
   position: relative;
-  left: 80%;
-  bottom: 25vh;
+  left: 90%;
+  bottom: 40%;
 `;
 
 const useStyles = makeStyles(theme => ({

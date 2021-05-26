@@ -11,6 +11,8 @@ import { FaStar, FaPlus } from 'react-icons/fa';
 const StylesContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin-left: 1em;
   width: 25%;
 `;
 
@@ -54,9 +56,13 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
 
   return(
     <StylesContainer>
-      <div className = 'product-rating'><StaticRating data = {currentStarRating} /></div>
+      <div className = 'product-rating'>
+          <StaticRating
+            data = {currentStarRating}
+          />
+      </div>
       <h2>{currentProduct.category}</h2>
-      <h1>{currentProduct.name}</h1>
+      <h1><strong>{currentProduct.name}</strong></h1>
       {currentStylePrice.sale_price === null
         ? <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentStylePrice.original_price)}</p>
         :
