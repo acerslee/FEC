@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { StaticRating } from '../../starRating.jsx';
 import styled from 'styled-components';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -35,7 +36,7 @@ const StylesImage = styled.img`
   width: 4em;
 `;
 
-const Styles = ({currentProduct, currentProductStyles, currentStylePrice, changeStyleDetail, currentImageSet}) => {
+const Styles = ({currentProduct, currentStarRating, currentProductStyles, currentStylePrice, changeStyleDetail, currentImageSet}) => {
   const [size, setSize] = useState('');
   const [quantity, setQuantity] = useState(1);
 
@@ -53,6 +54,7 @@ const Styles = ({currentProduct, currentProductStyles, currentStylePrice, change
 
   return(
     <StylesContainer>
+      <div className = 'product-rating'><StaticRating data = {currentStarRating} /></div>
       <h2>{currentProduct.category}</h2>
       <h1>{currentProduct.name}</h1>
       {currentStylePrice.sale_price === null

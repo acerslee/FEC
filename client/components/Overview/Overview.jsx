@@ -22,15 +22,16 @@ const Overview = ({product_id}) => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductStyles, setCurrentProductStyles] = useState({});
   const [currentImageSet, setCurrentImageSet] = useState({});
+  const [currentStarRating, setCurrentStarRating] = useState({});
   const [currentStylePrice, setCurrentStylePrice] = useState({});
 
   //get current product info & its styles
   useEffect(() => {
     api.getProduct(product_id)
       .then(product => setCurrentProduct(product.data))
-      .then(() => {
-        return api.getProductStyles(product_id)
-      })
+      .then(() => api.getMetadata({product_id}))
+      .then(res => setCurrentStarRating(res.data.ratings))
+      .then(() => api.getProductStyles(product_id))
       .then(styles => {
         setCurrentImageSet(styles.data.results[0])
         setCurrentProductStyles(styles.data)
@@ -71,6 +72,7 @@ const Overview = ({product_id}) => {
             />
             <Styles
               currentProduct = {currentProduct}
+              currentStarRating = {currentStarRating}
               currentStylePrice = {currentStylePrice}
               currentProductStyles = {currentProductStyles}
               changeStyleDetail = {changeStyleDetail}
