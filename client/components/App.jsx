@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import RelatedList from "./relatedproducts/related-product-list.jsx";
 import YourOutfitList from "./relatedproducts/your-outfit-list.jsx";
 import Questions from "./Questions/Questions.jsx";
@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Header>
+        <Header style = {{marginTop: '0'}}>
           <h1>Catwalk</h1>
         </Header>
         <Overview product_id={this.state.product_id} />

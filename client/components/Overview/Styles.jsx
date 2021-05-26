@@ -16,6 +16,11 @@ const StylesContainer = styled.div`
   width: 25%;
 `;
 
+const ReviewsStyle = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 const PriceBox = styled.div`
   display: flex;
   flex-direction: row;
@@ -38,6 +43,10 @@ const StylesImage = styled.img`
   width: 4em;
 `;
 
+const StyleButton = styled(Button)`
+  height: 5em;
+`;
+
 const Styles = ({currentProduct, currentStarRating, currentProductStyles, currentStylePrice, changeStyleDetail, currentImageSet}) => {
   const [size, setSize] = useState('');
   const [quantity, setQuantity] = useState(1);
@@ -56,12 +65,11 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
 
   return(
     <StylesContainer>
-      <div className = 'product-rating'>
-          <StaticRating
-            data = {currentStarRating}
-          />
-      </div>
-      <h2>{currentProduct.category}</h2>
+      <ReviewsStyle>
+          <StaticRating data = {currentStarRating} />
+          <a style = {{marginLeft: '0.5em'}} href = '#reviews-section'>Read all reviews</a>
+      </ReviewsStyle>
+      <h2 style = {{margin: '0'}}>{currentProduct.category}</h2>
       <h1><strong>{currentProduct.name}</strong></h1>
       {currentStylePrice.sale_price === null
         ? <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentStylePrice.original_price)}</p>
@@ -87,7 +95,7 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
         })}
       </ImageContainer>
       <ListAndButtonsContainer>
-      <FormControl>
+      <FormControl style = {{marginBottom: '1em', marginRight: '1em'}}>
         <InputLabel>Select Size</InputLabel>
         <Select
           labelId = 'size-selected-label'
@@ -116,13 +124,20 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
           <MenuItem value={5}>5</MenuItem>
         </Select>
       </FormControl>
-      <Button variant = 'contained'>
-        Add To Bag
-        <FaPlus />
-      </Button>
-      <Button variant = 'contained'>
-        <FaStar  style = {{width: 'auto'}} />
-      </Button>
+      <StyleButton
+        variant = 'contained'
+        style = {{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginRight: '1.5em'
+        }}
+      >
+        <p style = {{fontSize: '1.5em', margin: '0' }}>Add To Bag</p>
+        <FaPlus style = {{height: '2em', width: '2em' }}/>
+      </StyleButton>
+      <StyleButton variant = 'contained'>
+        <FaStar style = {{height: '2em', width: '2em' }}/>
+      </StyleButton>
       </ListAndButtonsContainer>
     </StylesContainer>
   )

@@ -78,7 +78,7 @@ const Reviews = ({ product_id }) => {
   }
 
   return (
-    <div>
+    <div id = 'reviews-section'>
       <Box elevation={0} className={classes.root}>
         <Grid container spacing={1}>
           <Grid item xs={12}>

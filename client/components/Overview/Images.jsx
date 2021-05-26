@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Link from "@material-ui/core/Link";
-import {FaExpand} from 'react-icons/fa'
-import Carousel from 'react-bootstrap/Carousel';
+import { FaExpand } from 'react-icons/fa'
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 
 const ImageContainer = styled.div`
   position: relative;
@@ -19,8 +19,8 @@ const MiniImagesContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 5%;
-  left: 7%;
+  top: 0%;
+  left: 10%;
 `;
 
 const MiniImageStyle = styled.img`
@@ -98,31 +98,23 @@ const Images = ({currentProductStyles, currentImageSet}) => {
 
   return(
     <ImageContainer>
-      {/* <Carousel activeIndex = {index} onSelect = {handleSelect}> */}
-        {/* <Link
-          target = '_blank'
-          onClick = {handleOpen}
-        > */}
-        <PhotoExpand onClick = {handleOpen}/>
-        {/* </Link> */}
-
-        <OverviewImage src = {currentMainImage} alt = 'cloth-image' />
-        <Modal open = {open} onClose = {handleClose}>
-          <div style = {modalStyle} className = {classes.paper}>
-            <img className = {classes.fullSize} src = {currentMainImage} />
-          </div>
-        </Modal>
-        <MiniImagesContainer>
-          {currentImageStyleSet.map((styleimage, index) => (
-            <MiniImageStyle
-              key = {index}
-              src = {styleimage.thumbnail_url}
-              alt = 'style mini thumbnails'
-              onClick = {() => handleMiniImageClick(styleimage.thumbnail_url)}
-            />
-          ))}
-        </MiniImagesContainer>
-      {/* </Carousel> */}
+      <PhotoExpand onClick = {handleOpen}/>
+      <OverviewImage src = {currentMainImage} alt = 'cloth-image' />
+      <Modal open = {open} onClose = {handleClose}>
+        <div style = {modalStyle} className = {classes.paper}>
+          <img className = {classes.fullSize} src = {currentMainImage} />
+        </div>
+      </Modal>
+      <MiniImagesContainer>
+        {currentImageStyleSet.map((styleimage, index) => (
+          <MiniImageStyle
+            key = {index}
+            src = {styleimage.thumbnail_url}
+            alt = 'style mini thumbnails'
+            onClick = {() => handleMiniImageClick(styleimage.thumbnail_url)}
+          />
+        ))}
+      </MiniImagesContainer>
     </ImageContainer>
   )
 };

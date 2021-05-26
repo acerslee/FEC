@@ -4,10 +4,6 @@ html{
   margin: 0 auto 0 auto;
 }
 
-.overview-flexbox{
-  margin-left: 47vh;
-}
-
 .component-flexbox{
   display:flex;
   flex-direction:column;
