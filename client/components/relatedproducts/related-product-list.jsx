@@ -4,6 +4,7 @@ import {CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-rea
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import regeneratorRuntime from 'regenerator-runtime';
 import api from '../../../api.js';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
 const RelatedList =  ({product_id, renderNewProductId}) => {
   //array of productIDs based off the productID state
@@ -108,8 +109,8 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
         ))}
       </Slider>
       <div className = 'buttons'>
-        <ButtonBack className = 'button-back'><i className="fas fa-arrow-left"></i></ButtonBack>
-        <ButtonNext className = 'button-next'><i className="fas fa-arrow-right"></i></ButtonNext>
+        <ButtonBack className = 'button-back'><FaArrowLeft /></ButtonBack>
+        <ButtonNext className = 'button-next'><FaArrowRight /></ButtonNext>
       </div>
       </CarouselProvider>
     </div>

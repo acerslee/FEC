@@ -38,9 +38,9 @@ class App extends Component {
           />
           <YourOutfitList product_id={this.state.product_id} />
         </div>
-        {/* <Questions product_id={this.state.product_id} />
+        <Questions product_id={this.state.product_id} />
         <Reviews product_id={this.state.product_id} />
-        <div style={{ marginBottom: "200px" }}></div> */}
+        <div style={{ marginBottom: "200px" }}></div>
       </>
     );
   }
