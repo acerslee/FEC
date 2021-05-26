@@ -30,7 +30,10 @@ const Overview = ({product_id}) => {
       .then(() => {
         return api.getProductStyles(product_id)
       })
-      .then(styles => setCurrentProductStyles(styles.data))
+      .then(styles => {
+        setCurrentImageSet(styles.data.results[0])
+        setCurrentProductStyles(styles.data)
+      })
       .catch(err => console.error('Cannot retrieve Product Info', err))
   }, [product_id]);
 

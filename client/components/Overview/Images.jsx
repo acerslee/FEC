@@ -48,9 +48,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2, 4, 3),
   },
   fullSize: {
-    border: "1px solid #ddd",
-    maxWidth: "90vw",
-    maxHeight: "90vh",
+    border: "0.5px solid #ddd",
+    width: "30vw",
+    height: "50vh",
   },
 }));
 

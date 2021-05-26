@@ -31,14 +31,14 @@ class App extends Component {
           <h1>Catwalk</h1>
         </Header>
         <Overview product_id={this.state.product_id} />
-        {/* <div className = 'component-flexbox'>
+        <div className = 'component-flexbox'>
           <RelatedList
             product_id={this.state.product_id}
             renderNewProductId={this.renderNewProductId.bind(this)}
           />
           <YourOutfitList product_id={this.state.product_id} />
         </div>
-        <Questions product_id={this.state.product_id} />
+        {/* <Questions product_id={this.state.product_id} />
         <Reviews product_id={this.state.product_id} />
         <div style={{ marginBottom: "200px" }}></div> */}
       </>
