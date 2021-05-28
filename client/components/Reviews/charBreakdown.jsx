@@ -16,7 +16,7 @@ const CharBreakdown = ({ metadata }) => {
             <Grid container item key={index} style={{marginTop: '10px'}}>
               <Grid item xs={1}></Grid>
               <Grid item xs={3} key={char}>
-                <h5>{char}:</h5>
+                <h3>{char}:</h3>
               </Grid>
               <Grid container item justify="center" spacing={1} style={{position: 'relative'}}>
                 <Grid item xs={3}>
@@ -62,7 +62,7 @@ const CharBreakdown = ({ metadata }) => {
               <Grid container item key={index} style={{marginTop: '10px'}}>
                 <Grid item xs={1}></Grid>
                 <Grid item xs={3} key={char}>
-                  <h5>{char}:</h5>
+                  <h3>{char}:</h3>
                 </Grid>
                 <Grid container item justify="center" spacing={1} style={{position: 'relative'}}>
                   <Grid item xs={3}>

@@ -97,10 +97,10 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
     <div style={modalStyle} className={classes.paper}>
       <Grid container direction="column" spacing={1}>
         <Grid item>
-          <Typography variant="h4">Ask Your Question</Typography>
+          <Typography variant="h3">Ask Your Question</Typography>
         </Grid>
         <Grid item>
-          <Typography variant="h5">About {product_name}</Typography>
+          <Typography variant="h3">About {product_name}</Typography>
         </Grid>
         <Grid item>
           <form onSubmit={handleSubmit}>
@@ -170,7 +170,7 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
                 />
               </Grid>
               <Grid item>
-                <Button type="submit" color="primary" variant="outlined">
+                <Button type="submit" color="primary" variant="outlined" aria-label = 'add-question'>
                   ADD
                 </Button>
               </Grid>
@@ -188,6 +188,7 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
         onClick={handleOpen}
         size="large"
         variant="outlined"
+        aria-label = 'add-question'
       >
         ADD A QUESTION
       </Button>

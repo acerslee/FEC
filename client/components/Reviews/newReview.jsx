@@ -127,7 +127,7 @@ const NewReview = ({ product, metadata, setModal }) => {
       <form id="newReview" onSubmit={handleSubmitReview}>
         <Grid container direction="column" spacing={1}>
           <Grid item>
-            <Typography variant="h4">Overall Rating
+            <Typography variant="h3">Overall Rating
               <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
             </Typography>
           </Grid>
@@ -135,7 +135,7 @@ const NewReview = ({ product, metadata, setModal }) => {
             <HoverRating size="large"/>
           </Grid>
           <Grid item>
-            <Typography variant="h5">Do you recommend this product?
+            <Typography variant="h3">Do you recommend this product?
               <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
             </Typography>
           </Grid>
@@ -145,30 +145,30 @@ const NewReview = ({ product, metadata, setModal }) => {
                 <FormControlLabel
                   value="true"
                   control={<Radio required />}
-                  label={<Typography variant="h5">True</Typography>}
+                  label={<Typography variant="h3">True</Typography>}
                 />
                 <FormControlLabel
                   value="false"
                   control={<Radio required/>}
-                  label={<Typography variant="h5">False</Typography>}
+                  label={<Typography variant="h3">False</Typography>}
                 />
               </RadioGroup>
             </FormControl>
           </Grid>
           <Grid item>
-            <Typography variant="h5" style={{marginBottom: '10px'}}>Characteristics
+            <Typography variant="h3" style={{marginBottom: '10px'}}>Characteristics
               <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
             </Typography>
             {characteristicList.map((char, index) => (
                 <div key={index}>
-                  <Typography variant="h6">{char}:</Typography>
+                  <Typography variant="h3">{char}:</Typography>
                   <FormControl component="fieldset">
                     <RadioGroup name={char} row={true} >
-                      <FormControlLabel value="1" control={<Radio required/>} label={<Typography variant="h5">1</Typography>}/>
-                      <FormControlLabel value="2" control={<Radio required/>} label={<Typography variant="h5">2</Typography>}/>
-                      <FormControlLabel value="3" control={<Radio required/>} label={<Typography variant="h5">3</Typography>}/>
-                      <FormControlLabel value="4" control={<Radio required/>} label={<Typography variant="h5">4</Typography>}/>
-                      <FormControlLabel value="5" control={<Radio required/>} label={<Typography variant="h5">5</Typography>}/>
+                      <FormControlLabel value="1" control={<Radio required/>} label={<Typography variant="h3">1</Typography>}/>
+                      <FormControlLabel value="2" control={<Radio required/>} label={<Typography variant="h3">2</Typography>}/>
+                      <FormControlLabel value="3" control={<Radio required/>} label={<Typography variant="h3">3</Typography>}/>
+                      <FormControlLabel value="4" control={<Radio required/>} label={<Typography variant="h3">4</Typography>}/>
+                      <FormControlLabel value="5" control={<Radio required/>} label={<Typography variant="h3">5</Typography>}/>
                     </RadioGroup>
                   </FormControl>
                 </div>
@@ -176,7 +176,7 @@ const NewReview = ({ product, metadata, setModal }) => {
             )}
           </Grid>
           <Grid item>
-            <Typography variant="h5">Review Summary:</Typography>
+            <Typography variant="h3">Review Summary:</Typography>
             <TextField
               name="summary"
               variant="outlined"
@@ -185,7 +185,7 @@ const NewReview = ({ product, metadata, setModal }) => {
             />
           </Grid>
           <Grid item>
-            <Typography variant="h5">Review Body:
+            <Typography variant="h3">Review Body:
               <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
             </Typography>
             <TextField
@@ -198,7 +198,7 @@ const NewReview = ({ product, metadata, setModal }) => {
             />
           </Grid>
           <Grid item>
-            <Typography variant="h5">Nickname:
+            <Typography variant="h3">Nickname:
               <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
             </Typography>
             <TextField
@@ -211,7 +211,7 @@ const NewReview = ({ product, metadata, setModal }) => {
             />
           </Grid>
           <Grid item>
-            <Typography variant="h5">Email:
+            <Typography variant="h3">Email:
               <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
             </Typography>
             <TextField
@@ -226,7 +226,7 @@ const NewReview = ({ product, metadata, setModal }) => {
             />
           </Grid>
           <Grid item>
-            <Typography variant="h5">Upload Images:</Typography>
+            <Typography variant="h3">Upload Images:</Typography>
             <input type="file" name="photos" onChange={handleUploadImages} accept="image/*" multiple />
             <span id="thumbnails">
               {reviewImages.map(image =>
@@ -240,7 +240,7 @@ const NewReview = ({ product, metadata, setModal }) => {
             </span>
           </Grid>
           <Grid item>
-            <Button type="submit" color="primary" variant="outlined" size="large">
+            <Button type="submit" color="primary" variant="outlined" size="large" aria-label = "Submit">
               Submit Review
             </Button>
           </Grid>

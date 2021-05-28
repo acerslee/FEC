@@ -49,7 +49,7 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
             <Typography
               key={i}
               component="span"
-              variant="h5"
+              variant="h3"
               className={classes.highlighted}
             >
               {part}
@@ -58,7 +58,7 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
             <Typography
               key={i}
               component="span"
-              variant="h5"
+              variant="h3"
               className={classes.bold}
             >
               {part}
@@ -94,7 +94,7 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
           xs={1}
           style={{ display: "flex", justifyContent: "flex-end" }}
         >
-          <Typography variant="h5" className={classes.bold}>
+          <Typography variant="h3" className={classes.bold}>
             Q:
           </Typography>
         </Grid>
@@ -106,21 +106,21 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
           xs={4}
           style={{ display: "flex", justifyContent: "flex-end" }}
         >
-          <Typography component="span" variant="h6">
+          <Typography component="span" variant="h4">
             Helpful?{" "}
             {!markedHelpful && (
               <Link
                 aria-label="qa-question-helpfulness"
                 onClick={markHelpful}
                 underline="always"
-                variant="h6"
+                variant="h4"
                 style={{ cursor: "pointer" }}
               >
                 Yes
               </Link>
             )}
             {markedHelpful && (
-              <Typography component="span" variant="h6">
+              <Typography component="span" variant="h4">
                 {" "}
                 Yes{" "}
               </Typography>
@@ -141,7 +141,7 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
               xs={1}
               style={{ display: "flex", justifyContent: "flex-end" }}
             >
-              <Typography variant="h5" className={classes.bold}>
+              <Typography variant="h3" className={classes.bold}>
                 A:
               </Typography>
             </Grid>
@@ -165,7 +165,7 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
             <Link
               color="primary"
               onClick={showMore}
-              variant="h6"
+              variant="h4"
               underline="none"
               style={{ cursor: "pointer" }}
             >

@@ -84,10 +84,11 @@ const Questions = ({ product_id, product_name }) => {
       <Grid container direction="column" spacing={1}>
         <Grid item>
           <Typography
-            variant="h5"
+            variant="h2"
             style={{
               paddingBottom: 0,
               paddingTop: 4,
+              fontSize: '1.5em',
               margin: "10px 0px 0px 10px",
             }}
           >
@@ -131,6 +132,7 @@ const Questions = ({ product_id, product_name }) => {
               onClick={showMore}
               size="large"
               variant="outlined"
+              aria-label = 'expand'
             >
               {expanded ? (
                 <span>FEWER QUESTIONS</span>

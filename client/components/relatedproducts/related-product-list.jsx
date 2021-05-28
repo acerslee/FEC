@@ -76,10 +76,11 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
         dragEnabled = {false}
       >
 
-      <Slider className = 'carousel__slider'>
+      <Slider className = 'carousel__slider' role = 'list'>
         {relatedItemsData.map(relatedItem => (
           <Slide
             key = {relatedItem.id}
+            role = 'listitem'
             index = {Math.random()}
             style = {{
               width: '16em',
@@ -107,8 +108,8 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
         ))}
       </Slider>
       <div className = 'buttons'>
-        <ButtonBack className = 'button-back'><FaArrowLeft /></ButtonBack>
-        <ButtonNext className = 'button-next'><FaArrowRight /></ButtonNext>
+        <ButtonBack className = 'button-back' aria-label = 'scroll-back'><FaArrowLeft /></ButtonBack>
+        <ButtonNext className = 'button-next' aria-label = 'scroll-next'><FaArrowRight /></ButtonNext>
       </div>
       </CarouselProvider>
     </div>

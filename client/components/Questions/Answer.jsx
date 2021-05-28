@@ -49,7 +49,7 @@ const Answer = ({ product_id, answer, refresh }) => {
       className={classes.root}
     >
       <Grid item>
-        <Typography variant="h6">{answer.body}</Typography>
+        <Typography variant="h4">{answer.body}</Typography>
       </Grid>
       {hasPhotos && (
         <Grid item container>

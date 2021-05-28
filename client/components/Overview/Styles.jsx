@@ -126,6 +126,7 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
       </FormControl>
       <StyleButton
         variant = 'contained'
+        aria-label = 'add-to-bag'
         style = {{
           display: 'flex',
           justifyContent: 'space-between',
@@ -135,7 +136,7 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
         <p style = {{fontSize: '1.5em', margin: '0' }}>Add To Bag</p>
         <FaPlus style = {{height: '2em', width: '2em' }}/>
       </StyleButton>
-      <StyleButton variant = 'contained'>
+      <StyleButton variant = 'contained' aria-label = 'add-to-favorites'>
         <FaStar style = {{height: '2em', width: '2em' }}/>
       </StyleButton>
       </ListAndButtonsContainer>

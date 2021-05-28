@@ -27,7 +27,7 @@ const Body = ({ body, id}) => {
         <Grid item>
           <p>{body.substring(0, 250)}<span className="dots">...</span>
           <span className="show-more" style={{display: 'none'}}>{body.substring(250)}</span></p>
-          <Button className="moreBtn" variant="outlined" color="secondary" onClick={showMore}>Show More</Button>
+          <Button className="moreBtn" variant="outlined" color="secondary" aria-label = "show-next" onClick={showMore}>Show More</Button>
         </Grid>
       </div>
     )

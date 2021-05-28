@@ -60,9 +60,10 @@ const YourOutfitList = ({product_id}) => {
         visibleSlides = {3}
         dragEnabled = {false}
       >
-        <Slider className = 'carousel__slider'>
+        <Slider className = 'carousel__slider' role = 'list'>
            <Slide
               index = {0}
+              role = 'listitem'
               style = {{
                 width: '16rem',
                 height: '26rem',
@@ -84,6 +85,7 @@ const YourOutfitList = ({product_id}) => {
           {outfitItems.map(outfitItem => (
             <Slide
               key = {outfitItem.id}
+              role = 'listitem'
               index = {Math.random()}
               style = {{
                 width: '16rem',
@@ -107,8 +109,8 @@ const YourOutfitList = ({product_id}) => {
           ))}
         </Slider>
         <div className = 'buttons'>
-          <ButtonBack className = 'button-back'><FaArrowLeft /></ButtonBack>
-          <ButtonNext className = 'button-next'><FaArrowRight /></ButtonNext>
+          <ButtonBack className = 'button-back' aria-label = 'scroll-back'><FaArrowLeft /></ButtonBack>
+          <ButtonNext className = 'button-next' aria-label = 'scroll-next'><FaArrowRight /></ButtonNext>
       </div>
       </CarouselProvider>
     </div>

@@ -82,7 +82,7 @@ const Reviews = ({ product_id }) => {
       <Box elevation={0} className={classes.root}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography variant="h5" style={{marginLeft: "10px"}}>
+            <Typography variant="h3" style={{marginLeft: "10px"}}>
               RATINGS & REVIEWS
             </Typography>
           </Grid>
@@ -113,7 +113,9 @@ const Reviews = ({ product_id }) => {
                 color="primary"
                 size="large"
                 style={{marginTop: '.5vw'}}
-                onClick={openModal}>
+                onClick={openModal}
+                aria-label = "Add-review"
+              >
                 Add A Review
               </Button>
             </Grid>
@@ -124,7 +126,9 @@ const Reviews = ({ product_id }) => {
                 color="primary"
                 size="large"
                 style={{marginTop: '.5vw'}}
-                onClick={loadMore}>
+                onClick={loadMore}
+                aria-label = "Load-review"
+              >
                 Load More
               </Button>}
             </Grid>

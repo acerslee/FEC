@@ -145,10 +145,10 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
     <div style={modalStyle} className={classes.paper}>
       <Grid container direction="column" spacing={1}>
         <Grid item>
-          <Typography variant="h4">Submit your Answer</Typography>
+          <Typography variant="h3">Submit your Answer</Typography>
         </Grid>
         <Grid item>
-          <Typography variant="h5">{question}</Typography>
+          <Typography variant="h3">{question}</Typography>
         </Grid>
         <Grid item>
           <form onSubmit={handleSubmit}>
@@ -199,7 +199,7 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
                 <InputLabel color="primary" htmlFor="photos-input">
                   Photos
                 </InputLabel>
-                <Button color="primary" variant="outlined" component="label">
+                <Button color="primary" variant="outlined" component="label" aria-label = 'upload-image'>
                   Upload
                   <input
                     type="file"
@@ -248,7 +248,7 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
                 />
               </Grid>
               <Grid item>
-                <Button type="submit" color="primary" variant="outlined">
+                <Button type="submit" color="primary" variant="outlined" aria-label = 'add-answer'>
                   ADD
                 </Button>
               </Grid>
@@ -262,7 +262,7 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
   return (
     <span>
       <Link
-        variant="h6"
+        variant="h4"
         onClick={handleOpen}
         underline="always"
         style={{ cursor: "pointer" }}

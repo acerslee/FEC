@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Link from "@material-ui/core/Link";
-import { FaExpand } from 'react-icons/fa'
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import { FaExpand } from 'react-icons/fa';
 
 const ImageContainer = styled.div`
   position: relative;
