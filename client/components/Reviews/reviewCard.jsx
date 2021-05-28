@@ -82,7 +82,7 @@ const ReviewCard = ({ reviewCard, setReviewCards, product_id }) => {
   );
 
   return (
-    <div>
+    <>
       <Grid container item spacing={1} xs={12} className={classes.reviewCard} id={reviewCard.review_id}>
         <Grid item xs={6}>
           <StaticRating data={{[reviewCard.rating]: 1}} />
@@ -117,7 +117,7 @@ const ReviewCard = ({ reviewCard, setReviewCards, product_id }) => {
           <CheckIcon fontSize="large" style={{transform: 'translate(0px, 6px)'}}/>I recommend this product!
         </Grid>}
       </Grid>
-    </div>
+    </>
   )
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FaCheck } from 'react-icons/fa';
 
 const BottomContainer = styled.div`
   display: flex;
@@ -9,11 +10,13 @@ const BottomContainer = styled.div`
 `;
 
 const SloganAndDescription = styled.div`
-  border-right: 2px solid;
+  border-right: 3px solid;
+  padding-right: 2em;
 `;
 
 const Features = styled.div`
   margin-left: 1em;
+  padding-left: 2em;
 `;
 
 const BottomSection = ({currentProduct}) => {
@@ -25,7 +28,7 @@ const BottomSection = ({currentProduct}) => {
       </SloganAndDescription>
       <Features>
         {currentProduct.features.map((feature, index) => (
-          <p key = {index}>{feature.feature} : {feature.value}</p>
+          <p key = {index}><FaCheck /> {feature.feature} : {feature.value}</p>
         ))}
       </Features>
     </BottomContainer>

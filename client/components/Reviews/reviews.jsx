@@ -98,7 +98,16 @@ const Reviews = ({ product_id }) => {
                 <option value="newest">newest</option>
               </NativeSelect>
             </Grid>
-            <Grid container item style={{height: '400px', maxHeight: '400px', overflow: "scroll"}}>
+            <Grid
+              container
+              item
+              style={{
+                height: '400px',
+                maxHeight: '400px',
+                overflow: 'scroll',
+                overflowX: 'hidden'
+              }}
+            >
               {reviewCards.slice(0, count).map(card =>
                 <ReviewCard
                   key={card.review_id}

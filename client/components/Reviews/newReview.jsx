@@ -145,12 +145,12 @@ const NewReview = ({ product, metadata, setModal }) => {
                 <FormControlLabel
                   value="true"
                   control={<Radio required />}
-                  label={<Typography variant="h3">True</Typography>}
+                  label={<Typography variant="h3">Yes</Typography>}
                 />
                 <FormControlLabel
                   value="false"
                   control={<Radio required/>}
-                  label={<Typography variant="h3">False</Typography>}
+                  label={<Typography variant="h3">No</Typography>}
                 />
               </RadioGroup>
             </FormControl>
@@ -164,11 +164,11 @@ const NewReview = ({ product, metadata, setModal }) => {
                   <Typography variant="h3">{char}:</Typography>
                   <FormControl component="fieldset">
                     <RadioGroup name={char} row={true} >
-                      <FormControlLabel value="1" control={<Radio required/>} label={<Typography variant="h3">1</Typography>}/>
-                      <FormControlLabel value="2" control={<Radio required/>} label={<Typography variant="h3">2</Typography>}/>
-                      <FormControlLabel value="3" control={<Radio required/>} label={<Typography variant="h3">3</Typography>}/>
-                      <FormControlLabel value="4" control={<Radio required/>} label={<Typography variant="h3">4</Typography>}/>
-                      <FormControlLabel value="5" control={<Radio required/>} label={<Typography variant="h3">5</Typography>}/>
+                      <FormControlLabel value="1" control={<Radio required/>} label={1}/>
+                      <FormControlLabel value="2" control={<Radio required/>} label={2}/>
+                      <FormControlLabel value="3" control={<Radio required/>} label={3}/>
+                      <FormControlLabel value="4" control={<Radio required/>} label={4}/>
+                      <FormControlLabel value="5" control={<Radio required/>} label={5}/>
                     </RadioGroup>
                   </FormControl>
                 </div>
