@@ -33,9 +33,9 @@ const Ratings = ({ metadata, reviewCards }) => {
   }
 
   return (
-    <div>
+    <>
       <Grid item container>
-        <Grid item xs={6} style={{fontSize: '60px', fontWeight: 'bold', textAlign: 'right'}}>
+        <Grid item xs={6} style={{fontSize: '60px', fontWeight: 'bold', textAlign: 'center'}}>
           {overallRating.toFixed(1)}
         </Grid>
         <Grid item xs={6} style={{fontSize: '50px'}}>
@@ -62,7 +62,7 @@ const Ratings = ({ metadata, reviewCards }) => {
         ))}
         <CharBreakdown metadata={metadata}/>
       </Grid>
-    </div>
+    </>
   )
 }
 

@@ -82,11 +82,11 @@ const Reviews = ({ product_id }) => {
       <Box elevation={0} className={classes.root}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
-            <Typography variant="h3" style={{marginLeft: "10px"}}>
+            <Typography style={{marginLeft: "10px", fontSize: '1.5em'}}>
               RATINGS & REVIEWS
             </Typography>
           </Grid>
-          <Grid container item xs={4} style={{maxHeight: '800px', overflow: "scroll"}}>
+          <Grid container item xs={4} style={{maxHeight: '800px', overflow: "hidden"}}>
             {metadata && <Ratings metadata={metadata} reviewCards={reviewCards}/>}
           </Grid>
           <Grid container item xs={8}>

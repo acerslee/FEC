@@ -13,10 +13,12 @@ import Box from "@material-ui/core/Box";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: "80vw",
+    overflow: "hidden"
   },
   questionsGridItem: {
     maxHeight: "50vh",
     overflow: "scroll",
+    overflowX: "hidden"
   },
 }));
 
