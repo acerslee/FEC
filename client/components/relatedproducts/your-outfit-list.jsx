@@ -54,8 +54,8 @@ const YourOutfitList = ({product_id}) => {
       <h1 className = 'heading-list'>YOUR OUTFITS</h1>
       <CarouselProvider
         className = 'items-carousel'
-        naturalSlideHeight = {200}
-        naturalSlideWidth = {200}
+        naturalSlideHeight = {150}
+        naturalSlideWidth = {150}
         totalSlides = {outfitItems.length + 1}
         visibleSlides = {3}
         dragEnabled = {false}
@@ -64,8 +64,8 @@ const YourOutfitList = ({product_id}) => {
            <Slide
               index = {0}
               style = {{
-                width: '23rem',
-                height: '32rem',
+                width: '16rem',
+                height: '26rem',
                 border: '1px solid',
                 marginRight: '3rem',
                 position: 'relative',
@@ -86,8 +86,8 @@ const YourOutfitList = ({product_id}) => {
               key = {outfitItem.id}
               index = {Math.random()}
               style = {{
-                width: '23rem',
-                height: '32rem',
+                width: '16rem',
+                height: '26rem',
                 border: '1px solid',
                 marginRight: '3rem',
                 position: 'relative'

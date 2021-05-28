@@ -6,6 +6,7 @@ import regeneratorRuntime from 'regenerator-runtime';
 import api from '../../../api.js';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
+
 const RelatedList =  ({product_id, renderNewProductId}) => {
   //array of productIDs based off the productID state
   const [relatedItems, setRelatedItems] = useState([]);
@@ -33,9 +34,6 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
   useEffect(() => {
     generateRelatedItems(relatedItems);
   }, [relatedItems])
-
-  //try to incorporate useEffect
-  //you can write export before const here to import the function into another file (ex. testing file). needs to be outside the functional component in order to export it
 
   const generateRelatedItems = async (relatedItems) => {
     let renderedItems = [];
@@ -84,8 +82,8 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
             key = {relatedItem.id}
             index = {Math.random()}
             style = {{
-              width: '23rem',
-              height: '32rem',
+              width: '16em',
+              height: '26em',
               border: '1px solid',
               marginRight: '3rem',
               position: 'relative'

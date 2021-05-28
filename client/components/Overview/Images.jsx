@@ -21,6 +21,8 @@ const MiniImagesContainer = styled.div`
   position: absolute;
   top: 0%;
   left: 10%;
+  height: 40vh;
+  overflow-y: scroll;
 `;
 
 const MiniImageStyle = styled.img`
@@ -35,7 +37,7 @@ const PhotoExpand = styled(FaExpand)`
   width: 2.5em;
   position: relative;
   left: 90%;
-  bottom: 40%;
+  bottom: 90%;
 `;
 
 const useStyles = makeStyles(theme => ({
@@ -105,7 +107,7 @@ const Images = ({currentProductStyles, currentImageSet}) => {
           <img className = {classes.fullSize} src = {currentMainImage} />
         </div>
       </Modal>
-      <MiniImagesContainer>
+      <MiniImagesContainer className = 'mini-images'>
         {currentImageStyleSet.map((styleimage, index) => (
           <MiniImageStyle
             key = {index}

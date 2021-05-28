@@ -19,6 +19,7 @@ const StylesContainer = styled.div`
 const ReviewsStyle = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 1em;
 `;
 
 const PriceBox = styled.div`
@@ -44,7 +45,7 @@ const StylesImage = styled.img`
 `;
 
 const StyleButton = styled(Button)`
-  height: 5em;
+  height: 4em;
 `;
 
 const Styles = ({currentProduct, currentStarRating, currentProductStyles, currentStylePrice, changeStyleDetail, currentImageSet}) => {
