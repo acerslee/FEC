@@ -49,7 +49,7 @@ const Answer = ({ product_id, answer, refresh }) => {
       className={classes.root}
     >
       <Grid item>
-        <Typography variant="h4">{answer.body}</Typography>
+        <Typography style = {{fontSize: '1.1em'}}>{answer.body}</Typography>
       </Grid>
       {hasPhotos && (
         <Grid item container>
@@ -58,7 +58,13 @@ const Answer = ({ product_id, answer, refresh }) => {
           })}
         </Grid>
       )}
-      <Grid item>
+      <Grid
+        item
+        style = {{
+          display: 'flex',
+          flexDirection: 'row'
+        }}
+      >
         {isSeller && (
           <Typography  className={classes.bold}>
             by Seller

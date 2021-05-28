@@ -32,7 +32,7 @@ const QuestionSearch = ({ handleSearch }) => {
             </InputAdornment>
           }
         />
-        <label for = "qa-search-bar">Have a question? Search for answers</label>
+        <label htmlFor = "qa-search-bar">Have a question? Search for answers</label>
       </form>
     </div>
   );

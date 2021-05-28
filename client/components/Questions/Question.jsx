@@ -40,37 +40,42 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
       }
     });
 
-  var getHighlightedText = (text, highlight) => {
-    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
-    return (
-      <>
-        {parts.map((part, i) =>
-          part.toLowerCase() === highlight.toLowerCase() ? (
-            <Typography
-              key={i}
-              style = {{fontSize: '1em'}}
-              className={classes.highlighted}
-            >
-              {part}
-            </Typography>
-          ) : (
-            <Typography
-              key={i}
-              className={classes.bold}
-              style = {{fontSize: '1em'}}
-            >
-              {part}
-            </Typography>
-          )
-        )}
-      </>
-    );
-  };
+  // var getHighlightedText = (text, highlight) => {
+  //   console.log(text)
+  //   console.log(highlight);
+  //   return(
+  //     <h2>{text}</h2>
+  //   )
+  //   // const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+  //   // return (
+  //   //   <>
+  //   //     {parts.map((part, i) =>
+  //   //       part.toLowerCase() === highlight.toLowerCase() ? (
+  //   //         <Typography
+  //   //           key={i}
+  //   //           style = {{fontSize: '1em'}}
+  //   //           className={classes.highlighted}
+  //   //         >
+  //   //           {part}
+  //   //         </Typography>
+  //   //       ) : (
+  //   //         <Typography
+  //   //           key={i}
+  //   //           className={classes.bold}
+  //   //           style = {{fontSize: '1em'}}
+  //   //         >
+  //   //           {part}
+  //   //         </Typography>
+  //   //       )
+  //   //     )}
+  //   //   </>
+  //   // );
+  // };
 
-  var questionBodyHighlighted = getHighlightedText(
-    question.question_body,
-    searchTerm
-  );
+  // var questionBodyHighlighted = getHighlightedText(
+  //   question.question_body,
+  //   searchTerm
+  // );
 
   const showMore = () => {
     expanded ? setAnswersToShow(2) : setAnswersToShow(answers.length);
@@ -96,15 +101,21 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
             Q:
           </Typography>
         </Grid>
-        <Grid item xs={7}>
-          {questionBodyHighlighted}
-        </Grid>
+        {/* <Grid item xs={7}>
+
+        </Grid> */}
         <Grid
           item
-          xs={4}
-          style={{ display: "flex", justifyContent: "flex-end" }}
+          xs={10}
+          style={{
+            display: "flex",
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: "space-between"
+          }}
         >
-          <Typography style = {{fontSize: '1em'}}>
+          <p style = {{fontSize: '1.5em'}}>{question.question_body}</p>
+          <Typography style = {{fontSize: '1.1em'}}>
             Helpful?{" "}
             {!markedHelpful && (
               <Link
@@ -112,8 +123,7 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
                 onClick={markHelpful}
                 underline="always"
                 style={{
-                  cursor: "pointer",
-                  fontSize: '1em'
+                  cursor: "pointer"
                 }}
               >
                 Yes
@@ -167,7 +177,7 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
               onClick={showMore}
               variant="h4"
               underline="none"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", fontSize: '1.1em' }}
             >
               {expanded ? "COLLAPSE ANSWERS" : "SEE MORE ANSWERS"}
             </Link>
