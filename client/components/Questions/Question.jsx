@@ -43,13 +43,12 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
   var getHighlightedText = (text, highlight) => {
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     return (
-      <span>
+      <>
         {parts.map((part, i) =>
           part.toLowerCase() === highlight.toLowerCase() ? (
             <Typography
               key={i}
-              component="span"
-              variant="h3"
+              style = {{fontSize: '1em'}}
               className={classes.highlighted}
             >
               {part}
@@ -57,15 +56,14 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
           ) : (
             <Typography
               key={i}
-              component="span"
-              variant="h3"
               className={classes.bold}
+              style = {{fontSize: '1em'}}
             >
               {part}
             </Typography>
           )
         )}
-      </span>
+      </>
     );
   };
 
@@ -106,21 +104,23 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
           xs={4}
           style={{ display: "flex", justifyContent: "flex-end" }}
         >
-          <Typography component="span" variant="h4">
+          <Typography style = {{fontSize: '1em'}}>
             Helpful?{" "}
             {!markedHelpful && (
               <Link
                 aria-label="qa-question-helpfulness"
                 onClick={markHelpful}
                 underline="always"
-                variant="h4"
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: "pointer",
+                  fontSize: '1em'
+                }}
               >
                 Yes
               </Link>
             )}
             {markedHelpful && (
-              <Typography component="span" variant="h4">
+              <Typography style = {{fontSize: '1em'}}>
                 {" "}
                 Yes{" "}
               </Typography>

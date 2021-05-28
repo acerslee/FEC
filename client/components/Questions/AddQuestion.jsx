@@ -112,7 +112,7 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
                   variant="outlined"
                   FormHelperTextProps={{ className: classes.helperText }}
                   helperText={
-                    <Typography component="span" variant="body1">
+                    <Typography  variant="body1">
                       {formValidation.body[1]}
                     </Typography>
                   }
@@ -127,7 +127,7 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
                 <InputLabel color="primary" htmlFor="add-question-name">
                   Name*
                 </InputLabel>
-                <Typography component="span" variant="body1">
+                <Typography  variant="body1">
                   <Box fontStyle="italic">
                     For privacy reasons, do not use your full name or email
                     address
@@ -138,7 +138,7 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
                   variant="outlined"
                   FormHelperTextProps={{ className: classes.helperText }}
                   helperText={
-                    <Typography component="span" variant="body1">
+                    <Typography  variant="body1">
                       {formValidation.name[1]}
                     </Typography>
                   }
@@ -149,7 +149,7 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
               </Grid>
               <Grid item>
                 <InputLabel htmlFor="add-question-email">Email*</InputLabel>
-                <Typography component="span" variant="body1">
+                <Typography  variant="body1">
                   <Box fontStyle="italic">
                     For authentication reasons, you will not be emailed
                   </Box>
@@ -159,7 +159,7 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
                   variant="outlined"
                   FormHelperTextProps={{ className: classes.helperText }}
                   helperText={
-                    <Typography component="span" variant="body1">
+                    <Typography  variant="body1">
                       {formValidation.email[1]}
                     </Typography>
                   }
@@ -182,7 +182,7 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
   );
 
   return (
-    <span>
+    <>
       <Button
         color="primary"
         onClick={handleOpen}
@@ -199,7 +199,7 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
       >
         {body}
       </Modal>
-    </span>
+    </>
   );
 };
 

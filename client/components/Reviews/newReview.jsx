@@ -228,7 +228,7 @@ const NewReview = ({ product, metadata, setModal }) => {
           <Grid item>
             <Typography variant="h3">Upload Images:</Typography>
             <input type="file" name="photos" onChange={handleUploadImages} accept="image/*" multiple />
-            <span id="thumbnails">
+            <div id="thumbnails">
               {reviewImages.map(image =>
                 <img
                   src={image}
@@ -237,7 +237,7 @@ const NewReview = ({ product, metadata, setModal }) => {
                   height="60px"
                   style={{margin: "5px", border: "2px solid grey"}}>
                 </img>)}
-            </span>
+            </div>
           </Grid>
           <Grid item>
             <Button type="submit" color="primary" variant="outlined" size="large" aria-label = "Submit">

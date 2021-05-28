@@ -43,7 +43,7 @@ const ImageModal = ({ imageUrl }) => {
   };
 
   return (
-    <span>
+    <>
       <Link
         target="_blank"
         key={imageUrl}
@@ -57,7 +57,7 @@ const ImageModal = ({ imageUrl }) => {
           <img className={classes.fullSize} src={imageUrl} />
         </div>
       </Modal>
-    </span>
+    </>
   );
 };
 

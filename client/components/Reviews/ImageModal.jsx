@@ -42,7 +42,7 @@ const ImageModal = ({ imageUrl }) => {
   };
 
   return (
-    <span>
+    <>
       <Link target="_blank" key={imageUrl} onClick={handleOpen}>
         <img className={classes.thumbnail} src={imageUrl} />
       </Link>
@@ -51,7 +51,7 @@ const ImageModal = ({ imageUrl }) => {
           <img className={classes.fullSize} src={imageUrl} />
         </div>
       </Modal>
-    </span>
+    </>
   );
 };
 

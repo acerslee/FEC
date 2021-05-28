@@ -60,21 +60,21 @@ const Answer = ({ product_id, answer, refresh }) => {
       )}
       <Grid item>
         {isSeller && (
-          <Typography component="span" className={classes.bold}>
+          <Typography  className={classes.bold}>
             by Seller
           </Typography>
         )}
         {!isSeller && (
-          <Typography component="span">
+          <Typography >
             {"by " + answer.answerer_name}
           </Typography>
         )}
-        <Typography component="span">
+        <Typography >
           {" | " +
             new Date(answer.date).toLocaleDateString("en-us", dateOptions) +
             " | "}
         </Typography>
-        <Typography component="span" variant="body1">
+        <Typography  variant="body1">
           Helpful?{" "}
           {!markedHelpful && (
             <Link
@@ -88,7 +88,7 @@ const Answer = ({ product_id, answer, refresh }) => {
             </Link>
           )}
           {markedHelpful && (
-            <Typography component="span" variant="body1">
+            <Typography  variant="body1">
               {" "}
               Yes{" "}
             </Typography>

@@ -69,7 +69,7 @@ const ReviewCard = ({ reviewCard, setReviewCards, product_id }) => {
   );
 
   const feedback = (
-    <span >
+    <>
       Helpful? &nbsp;
       <a data={reviewCard.review_id} onClick={handleHelpful}>
         Yes ({ reviewCard.helpfulness })
@@ -78,7 +78,7 @@ const ReviewCard = ({ reviewCard, setReviewCards, product_id }) => {
       <a data={reviewCard.review_id} onClick={handleReport}>
         Report
       </a>
-    </span>
+    </>
   );
 
   return (

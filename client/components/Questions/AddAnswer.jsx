@@ -160,7 +160,7 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
                   variant="outlined"
                   FormHelperTextProps={{ className: classes.helperText }}
                   helperText={
-                    <Typography component="span" variant="body1">
+                    <Typography  variant="body1">
                       {formValidation.body[1]}
                     </Typography>
                   }
@@ -175,7 +175,7 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
                 <InputLabel color="primary" htmlFor="add-answer-name">
                   Name*
                 </InputLabel>
-                <Typography component="span" variant="body1">
+                <Typography  variant="body1">
                   <Box fontStyle="italic">
                     For privacy reasons, do not use your full name or email
                     address
@@ -186,7 +186,7 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
                   variant="outlined"
                   FormHelperTextProps={{ className: classes.helperText }}
                   helperText={
-                    <Typography component="span" variant="body1">
+                    <Typography  variant="body1">
                       {formValidation.name[1]}
                     </Typography>
                   }
@@ -213,7 +213,7 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
                 </Button>
               </Grid>
               <Grid item>
-                <span id="thumbnails">
+                <div id="thumbnails">
                   {images.map((image) => (
                     <img
                       src={image}
@@ -223,11 +223,11 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
                       style={{ margin: "5px", border: "2px solid grey" }}
                     ></img>
                   ))}
-                </span>
+                </div>
               </Grid>
               <Grid item>
                 <InputLabel htmlFor="add-answer-email">Email*</InputLabel>
-                <Typography component="span" variant="body1">
+                <Typography  variant="body1">
                   <Box fontStyle="italic">
                     For authentication reasons, you will not be emailed
                   </Box>
@@ -237,7 +237,7 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
                   variant="outlined"
                   FormHelperTextProps={{ className: classes.helperText }}
                   helperText={
-                    <Typography component="span" variant="body1">
+                    <Typography  variant="body1">
                       {formValidation.email[1]}
                     </Typography>
                   }
@@ -260,12 +260,11 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
   );
 
   return (
-    <span>
+    <>
       <Link
-        variant="h4"
         onClick={handleOpen}
         underline="always"
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", fontSize: '1em' }}
       >
         Add Answer
       </Link>
@@ -276,7 +275,7 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
       >
         {body}
       </Modal>
-    </span>
+    </>
   );
 };
 
