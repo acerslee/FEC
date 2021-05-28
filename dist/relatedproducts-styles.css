@@ -1,7 +1,13 @@
 *{
   padding: 0;
-  /* margin: 0 auto 0 auto; */
   font-family: Arial;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -15,11 +21,6 @@
 scrollbar-width: none;  /* Firefox */
 }
 
-.component-flexbox{
-  display:flex;
-  flex-direction:column;
-  align-items: center;
-}
 
 .product-list{
   height:33rem;

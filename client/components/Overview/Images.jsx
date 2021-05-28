@@ -12,7 +12,7 @@ const ImageContainer = styled.div`
 
 const OverviewImage = styled.img`
   height: 40em;
-  width: 40em;
+  width: 43em;
 `;
 
 const MiniImagesContainer = styled.div`

@@ -9,6 +9,7 @@ const OverviewContainer = styled.section`
   display: flex;
   flex-direction: column;
   height: 50%;
+  width: 100%;
 `;
 
 const ImageStyleContainer = styled.div`
@@ -45,8 +46,6 @@ const Overview = ({product_id}) => {
   }, [product_id]);
 
   const changeStyleDetail = style_id => {
-    // console.log(style_id)
-    console.log(currentProductStyles.results);
     for (let i = 0; i < currentProductStyles.results.length; i++) {
       if (currentProductStyles.results[i].style_id === style_id){
         setCurrentImageSet(currentProductStyles.results[i])
@@ -59,8 +58,6 @@ const Overview = ({product_id}) => {
     }
   };
 
-  // console.log(currentProduct);
-  // console.log('style', currentProductStyles);
   return(
     <OverviewContainer>
       {Object.keys(currentProductStyles).length &&

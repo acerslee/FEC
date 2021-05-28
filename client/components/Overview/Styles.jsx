@@ -12,8 +12,8 @@ const StylesContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 1em;
-  width: 25%;
+  margin-left: 3em;
+  width: 30%;
 `;
 
 const ReviewsStyle = styled.div`
@@ -74,15 +74,14 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
       <h1><strong>{currentProduct.name}</strong></h1>
       {currentStylePrice.sale_price === null
         ? <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentStylePrice.original_price)}</p>
-        :
-          <PriceBox>
+        : <PriceBox>
             <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentStylePrice.sale_price)}</p>
             <p style = {{color: 'red', textDecoration: 'line-through', marginLeft: '0.8em'}}>
               {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(currentStylePrice.original_price)}
             </p>
           </PriceBox>
       }
-      <p>{productStyle}</p>
+      <p>STYLE > {productStyle}</p>
       <ImageContainer>
         {currentProductStyles.results.map(style => {
           return(

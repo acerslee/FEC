@@ -27,19 +27,23 @@ class App extends Component {
   render() {
     return (
       <>
-        <Header style = {{marginTop: '0'}}>
+        <Header
+          style = {{
+            marginTop: '-1.5em',
+            width: '92%'
+          }}
+        >
           <h1>Catwalk</h1>
         </Header>
+        <p><em>SITE-WIDE ANNOUNCEMENT MESSAGE!</em> -- SALE / DISCOUNT OFFER -- NEW PRODUCT HIGHLIGHT</p>
         <Overview product_id={this.state.product_id} />
-        <div className = 'component-flexbox'>
-          <RelatedList
-            product_id={this.state.product_id}
-            renderNewProductId={this.renderNewProductId.bind(this)}
-          />
-          <YourOutfitList product_id={this.state.product_id} />
-        </div>
-        {/* <Questions product_id={this.state.product_id} />
-        <Reviews product_id={this.state.product_id} /> */}
+        <RelatedList
+          product_id={this.state.product_id}
+          renderNewProductId={this.renderNewProductId.bind(this)}
+        />
+        <YourOutfitList product_id={this.state.product_id} />
+        <Questions product_id={this.state.product_id} />
+        <Reviews product_id={this.state.product_id} />
       </>
     );
   }
