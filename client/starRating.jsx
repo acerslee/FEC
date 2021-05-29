@@ -30,6 +30,7 @@ function HoverRating() {
   const classes = useStyles();
 
   return (
+
     <div className={classes.root} id='hover-rating' value={value}>
       <Rating
         name="hover-feedback"
@@ -57,14 +58,18 @@ function StaticRating(props) {
   const [value, setValue] = React.useState(values);
 
   return (
-    <div value={value}>
-      <Rating
-        name="read-only"
-        value={value} readOnly
-        precision={0.25}
-        size={props.size || 'medium'}
-      />
-    </div>
+    <>
+    {value &&
+      <div value={value}>
+        <Rating
+          name="read-only"
+          value={value} readOnly
+          precision={0.25}
+          size={props.size || 'medium'}
+        />
+      </div>
+      }
+    </>
   );
 }
 

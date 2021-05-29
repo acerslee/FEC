@@ -71,7 +71,14 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
           <StaticRating data = {currentStarRating} />
           <a style = {{marginLeft: '0.5em'}} href = '#reviews-section'>Read all reviews</a>
       </ReviewsStyle>
-      <h2 style = {{margin: '0'}}>{currentProduct.category}</h2>
+      <h2 style = {{
+        margin: '0',
+        textTransform: 'uppercase',
+        fontSize: '1em'
+        }}
+      >
+        {currentProduct.category}
+      </h2>
       <h1
         style = {{
           fontSize: '3em',
@@ -90,7 +97,7 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
             </p>
           </PriceBox>
       }
-      <p><strong>STYLE></strong> {productStyle}</p>
+      <p><strong>STYLE></strong> <span style = {{textTransform: 'uppercase'}}>{productStyle}</span></p>
       <ImageContainer>
         {currentProductStyles.results.map(style => {
           return(

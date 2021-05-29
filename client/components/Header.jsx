@@ -5,13 +5,18 @@ const HeaderContainer = styled.header`
   width: 92%;
   margin-top: -0.5rem;
   background-color: #7a7a7a;
-  height: 10vh;
+  height: 6rem;
+`;
+
+const Logo = styled.h1`
+  color: white;
+  margin-left: 0.5em;
 `;
 
 const Header = () => (
   <>
     <HeaderContainer>
-      Emu Store
+      <Logo>Emu Store</Logo>
     </HeaderContainer>
     <p><em>SITE-WIDE ANNOUNCEMENT MESSAGE!</em> -- SALE / <strong>DISCOUNT OFFER</strong> -- NEW PRODUCT HIGHLIGHT</p>
   </>

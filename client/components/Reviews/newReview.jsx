@@ -13,6 +13,11 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
+import styled from 'styled-components';
+
+const FieldHeader = styled(Typography)`
+  font-size: 1.5em !important;
+`;
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -28,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     color: "blue",
   },
 }));
+
 
 const NewReview = ({ product, metadata, setModal }) => {
   const classes = useStyles();
@@ -127,17 +133,17 @@ const NewReview = ({ product, metadata, setModal }) => {
       <form id="newReview" onSubmit={handleSubmitReview}>
         <Grid container direction="column" spacing={1}>
           <Grid item>
-            <Typography variant="h3">Overall Rating
-              <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
-            </Typography>
+            <FieldHeader variant="h3">Overall Rating
+              <FieldHeader variant="inherit" style={{color: 'red'}}>*</FieldHeader>
+            </FieldHeader>
           </Grid>
           <Grid item>
             <HoverRating size="large"/>
           </Grid>
           <Grid item>
-            <Typography variant="h3">Do you recommend this product?
-              <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
-            </Typography>
+            <FieldHeader variant="h3">Do you recommend this product?
+              <FieldHeader variant="inherit" style={{color: 'red'}}>*</FieldHeader>
+            </FieldHeader>
           </Grid>
           <Grid item>
             <FormControl component="fieldset">
@@ -145,23 +151,23 @@ const NewReview = ({ product, metadata, setModal }) => {
                 <FormControlLabel
                   value="true"
                   control={<Radio required />}
-                  label={<Typography variant="h3">Yes</Typography>}
+                  label={<FieldHeader variant="h3">Yes</FieldHeader>}
                 />
                 <FormControlLabel
                   value="false"
                   control={<Radio required/>}
-                  label={<Typography variant="h3">No</Typography>}
+                  label={<FieldHeader variant="h3">No</FieldHeader>}
                 />
               </RadioGroup>
             </FormControl>
           </Grid>
           <Grid item>
-            <Typography variant="h3" style={{marginBottom: '10px'}}>Characteristics
-              <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
-            </Typography>
+            <FieldHeader variant="h3" style={{marginBottom: '10px'}}>Characteristics
+              <FieldHeader variant="inherit" style={{color: 'red'}}>*</FieldHeader>
+            </FieldHeader>
             {characteristicList.map((char, index) => (
                 <div key={index}>
-                  <Typography variant="h3">{char}:</Typography>
+                  <FieldHeader variant="h3">{char}:</FieldHeader>
                   <FormControl component="fieldset">
                     <RadioGroup name={char} row={true} >
                       <FormControlLabel value="1" control={<Radio required/>} label={1}/>
@@ -176,7 +182,7 @@ const NewReview = ({ product, metadata, setModal }) => {
             )}
           </Grid>
           <Grid item>
-            <Typography variant="h3">Review Summary:</Typography>
+            <FieldHeader variant="h3">Review Summary:</FieldHeader>
             <TextField
               name="summary"
               variant="outlined"
@@ -185,9 +191,9 @@ const NewReview = ({ product, metadata, setModal }) => {
             />
           </Grid>
           <Grid item>
-            <Typography variant="h3">Review Body:
-              <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
-            </Typography>
+            <FieldHeader variant="h3">Review Body:
+              <FieldHeader variant="inherit" style={{color: 'red'}}>*</FieldHeader>
+            </FieldHeader>
             <TextField
               name="body"
               multiline
@@ -198,9 +204,9 @@ const NewReview = ({ product, metadata, setModal }) => {
             />
           </Grid>
           <Grid item>
-            <Typography variant="h3">Nickname:
-              <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
-            </Typography>
+            <FieldHeader variant="h3">Nickname:
+              <FieldHeader variant="inherit" style={{color: 'red'}}>*</FieldHeader>
+            </FieldHeader>
             <TextField
               name="nickname"
               id="nickname"
@@ -211,9 +217,9 @@ const NewReview = ({ product, metadata, setModal }) => {
             />
           </Grid>
           <Grid item>
-            <Typography variant="h3">Email:
-              <Typography variant="inherit" style={{color: 'red'}}>*</Typography>
-            </Typography>
+            <FieldHeader variant="h3">Email:
+              <FieldHeader variant="inherit" style={{color: 'red'}}>*</FieldHeader>
+            </FieldHeader>
             <TextField
               name="email"
               id="email"
@@ -226,7 +232,7 @@ const NewReview = ({ product, metadata, setModal }) => {
             />
           </Grid>
           <Grid item>
-            <Typography variant="h3">Upload Images:</Typography>
+            <FieldHeader variant="h3">Upload Images:</FieldHeader>
             <input type="file" name="photos" onChange={handleUploadImages} accept="image/*" multiple />
             <div id="thumbnails">
               {reviewImages.map(image =>
