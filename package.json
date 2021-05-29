@@ -11,6 +11,7 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server": "nodemon server.js",
+    "build": "webpack",
     "test": "jest --coverage"
   },
   "repository": {
