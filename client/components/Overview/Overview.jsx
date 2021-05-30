@@ -59,9 +59,9 @@ const Overview = ({product_id}) => {
   };
 
   return(
-    <OverviewContainer>
-      {Object.keys(currentProductStyles).length &&
-        <>
+    <>
+      {Object.keys(currentProductStyles).length !== 0 &&
+        <OverviewContainer>
           <ImageStyleContainer>
             <Images
               currentProductStyles = {currentProductStyles}
@@ -77,9 +77,9 @@ const Overview = ({product_id}) => {
             />
           </ImageStyleContainer>
           <BottomSection currentProduct = {currentProduct} />
-        </>
+        </OverviewContainer>
       }
-    </OverviewContainer>
+    </>
   )
 };
 
