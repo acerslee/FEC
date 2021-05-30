@@ -1,4 +1,3 @@
-import TOKEN from './token.js';
 const axios = require('axios').default;
 
 // Handles all GET requests, requires a route and a params
@@ -9,7 +8,7 @@ function handleGetRequests(route, params) {
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/${route}`,
       headers: {
-        Authorization: TOKEN
+        Authorization: process.env.TOKEN
       },
       params: params
     }
@@ -18,7 +17,7 @@ function handleGetRequests(route, params) {
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/${route}`,
       headers: {
-        Authorization: TOKEN
+        Authorization:  process.env.TOKEN
       }
     }
   }
@@ -64,7 +63,7 @@ function handlePostRequests(route, params = {}, data = {}) {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/${route}`,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: TOKEN
+      Authorization: process.env.TOKEN
     },
     params: params,
     data: data
@@ -90,7 +89,7 @@ function handlePutRequests(route, params) {
     method: 'put',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/${route}`,
     headers: {
-      Authorization: TOKEN
+      Authorization: process.env.TOKEN
     },
     params: params
   };
