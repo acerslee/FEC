@@ -11,6 +11,7 @@ const App = () => {
 
   const [product_id, setProduct_id] = useState(24156);
   const [currentProduct, setCurrentProduct] = useState({});
+  const [productMetadata, setProductMetadata] = useState({});
 
   const renderNewProductId = (id) => {
     setProduct_id(id);
@@ -18,23 +19,51 @@ const App = () => {
 
   useEffect(() => {
     const productUrl = `/proxy/api/fec2/hratx/products/${product_id}`;
-    axios.get(productUrl)
-      .then(product => setCurrentProduct(product.data))
-      .catch(err => console.error('Cannot retrieve product data'))
+    const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${product_id}`;
+
+    axios.all([
+      axios.get(productUrl),
+      axios.get(metaUrl)
+    ])
+    .then(responses => {
+      console.log(responses)
+      setCurrentProduct(responses[0].data)
+      setProductMetadata(responses[1].data)
+    })
+    .catch(err => console.error('Cannot retrieve product data'))
+
   },[product_id])
 
   return (
     <>
-      <Header />
-      <Overview product_id={product_id} currentProduct = {currentProduct} />
-      <RelatedList
-        product_id={product_id}
-        renderNewProductId={renderNewProductId}
-        currentProduct = {currentProduct}
-      />
-      <YourOutfitList product_id={product_id} currentProduct = {currentProduct}/>
-      <Questions product_id={product_id} />
-      <Reviews product_id={product_id} />
+    {Object.keys(productMetadata).length !== 0 &&
+      <>
+        <Header />
+        <Overview
+          product_id={product_id}
+          currentProduct = {currentProduct}
+          productMetadata = {productMetadata}
+        />
+        <RelatedList
+          product_id={product_id}
+          renderNewProductId={renderNewProductId}
+          currentProduct = {currentProduct}
+        />
+        <YourOutfitList
+          product_id={product_id}
+          currentProduct = {currentProduct}
+        />
+        <Questions
+          product_id={product_id}
+          currentProduct = {currentProduct}
+        />
+        <Reviews
+          product_id={product_id}
+          currentProduct = {currentProduct}
+          productMetadata = {productMetadata}
+        />
+      </>
+      }
     </>
   );
 };

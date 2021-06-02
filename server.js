@@ -21,8 +21,8 @@ app.use('/proxy',
       //you can update headers
       proxyReqOpts.headers['Authorization'] = process.env.TOKEN;
       //you can update method
-      // proxyReqOpts.method = 'GET';
-      return proxyReqOpts;
+      if (proxyReqOpts.method = 'GET') return proxyReqOpts;
+      if (proxyReqOpts.method = 'POST') return proxyReqOpts;
     }
   })
 )

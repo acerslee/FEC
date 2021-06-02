@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Question from "./Question.jsx";
 import QuestionSearch from "./QuestionSearch.jsx";
 import AddQuestion from "./AddQuestion.jsx";
-import API from "../../../api";
+import axios from 'axios';
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -22,11 +22,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Questions = ({ product_id, product_name }) => {
+const Questions = ({ product_id, currentProduct }) => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [questionsToShow, setQuestionsToShow] = useState(4);
-  const [productName, setProductName] = useState("");
   const [expanded, setExpanded] = useState(false);
   const classes = useStyles();
 
@@ -41,27 +40,17 @@ const Questions = ({ product_id, product_name }) => {
   }, [product_id]);
 
   var loadData = async (product_id) => {
-    let options = {
-      product_id: product_id,
-      page: 1,
-      count: 200,
-    };
+    const questionsURL = `/proxy/api/fec2/hratx/qa/questions?product_id=${product_id}&page=1&count=200`;
 
-    API.getQuestions(options)
-      .catch((err) => console.log("getQuestions", err))
-      .then((response) =>
+    axios.get(questionsURL)
+      .catch(err => console.error("getQuestions", err))
+      .then(response =>
         setData(
           response.data.results.sort((a, b) =>
             a.helpfulness > b.helpfulness ? -1 : 1
           )
         )
       );
-
-    API.getProduct(product_id)
-      .then((res) => {
-        setProductName(res.data.name);
-      })
-      .catch((err) => console.log("ERROR: ", err));
   };
 
   var handleSearch = (searchTerm) => {
@@ -147,7 +136,7 @@ const Questions = ({ product_id, product_name }) => {
         <Grid item>
           <AddQuestion
             product_id={product_id}
-            product_name={productName}
+            product_name={currentProduct.name}
             refresh={loadData}
           />
         </Grid>

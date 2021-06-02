@@ -3,6 +3,7 @@ import ReviewCard from './reviewCard.jsx';
 import Ratings from './ratings.jsx';
 import NewReview from './newReview.jsx';
 import API from '../../../api.js';
+import axios from 'axios';
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -19,47 +20,34 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Reviews = ({ product_id }) => {
-  let [product, setProduct] = useState();
+const Reviews = ({ product_id, currentProduct, productMetadata }) => {
   let [reviewCards, setReviewCards] = useState([]);
-  let [metadata, setMetadata] = useState();
+  let [metadata, setMetadata] = useState(productMetadata);
   let [count, updateCount] = useState(2);
   let [modal, setModal] = useState(false);
   const classes = useStyles();
 
   useEffect(() => {
-    fetchProductInfo()
     fetchReviews('relevant');
-    fetchMetadata();
   }, [product_id]);
 
-  function fetchProductInfo() {
-    API.getProduct(product_id)
-    .then(res => {
-      setProduct(res.data);
-    })
-    .catch(err => console.log(err));
-  }
-
   function fetchReviews(sort) {
-    API.getReviewCards({
-      product_id : product_id,
-      sort: sort,
-      count: 100
-    })
+    const reviewUrl = `/proxy/api/fec2/hratx/reviews/?product_id=${product_id}&sort=${sort}&count=100`;
+
+    axios.get(reviewUrl)
     .then(res => {
       setReviewCards(res.data.results);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
   }
 
-  function fetchMetadata() {
-    API.getMetadata({ product_id })
-    .then(res => {
-      setMetadata(res.data);
-    })
-    .catch(err => console.log(err));
-  }
+  // function fetchMetadata() {
+  //   API.getMetadata({ product_id })
+  //   .then(res => {
+  //     setMetadata(res.data);
+  //   })
+  //   .catch(err => console.log(err));
+  // }
 
   function handleSort(e) {
     fetchReviews(e.target.value);
@@ -145,7 +133,7 @@ const Reviews = ({ product_id }) => {
         </Grid>
       </Box>
       <Modal open={modal} onClose={closeModal} aria-labelledby="add-question-title">
-        <NewReview setModal={setModal} product={product} metadata={metadata} />
+        <NewReview setModal={setModal} product={currentProduct} metadata={metadata} />
       </Modal>
     </div>
     )
