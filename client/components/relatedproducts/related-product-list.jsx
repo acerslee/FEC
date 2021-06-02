@@ -22,7 +22,6 @@ const RelatedList =  ({product_id, renderNewProductId, currentProduct}) => {
     await axios.get(relatedIdUrl)
       .then(res => {
           let distinctRelatedItems = [...new Set(res.data)]
-          //removeDuplicateRender ensures the current product DOES NOT appear in the relatedproducts list
           let removeDuplicateRender = distinctRelatedItems.filter(outfitId => outfitId !== product_id);
 
           return removeDuplicateRender;

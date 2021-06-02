@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReviewCard from './reviewCard.jsx';
 import Ratings from './ratings.jsx';
 import NewReview from './newReview.jsx';
-import API from '../../../api.js';
 import axios from 'axios';
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,14 +21,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Reviews = ({ product_id, currentProduct, productMetadata }) => {
   let [reviewCards, setReviewCards] = useState([]);
-  let [metadata, setMetadata] = useState(productMetadata);
   let [count, updateCount] = useState(2);
   let [modal, setModal] = useState(false);
   const classes = useStyles();
-
-  useEffect(() => {
-    fetchReviews('relevant');
-  }, [product_id]);
 
   function fetchReviews(sort) {
     const reviewUrl = `/proxy/api/fec2/hratx/reviews/?product_id=${product_id}&sort=${sort}&count=100`;
@@ -40,14 +34,6 @@ const Reviews = ({ product_id, currentProduct, productMetadata }) => {
     })
     .catch(err => console.error(err));
   }
-
-  // function fetchMetadata() {
-  //   API.getMetadata({ product_id })
-  //   .then(res => {
-  //     setMetadata(res.data);
-  //   })
-  //   .catch(err => console.log(err));
-  // }
 
   function handleSort(e) {
     fetchReviews(e.target.value);
@@ -65,6 +51,10 @@ const Reviews = ({ product_id, currentProduct, productMetadata }) => {
     setModal(false);
   }
 
+  useEffect(() => {
+    fetchReviews('relevant');
+  }, [product_id]);
+
   return (
     <div id = 'reviews-section' style = {{paddingBottom: '10rem'}}>
       <Box elevation={0} className={classes.root}>
@@ -75,7 +65,7 @@ const Reviews = ({ product_id, currentProduct, productMetadata }) => {
             </Typography>
           </Grid>
           <Grid container item xs={4} style={{maxHeight: '800px', overflow: "hidden"}}>
-            {metadata && <Ratings metadata={metadata} reviewCards={reviewCards}/>}
+            {productMetadata && <Ratings metadata={productMetadata} reviewCards={reviewCards}/>}
           </Grid>
           <Grid container item xs={8}>
             <Grid item xs={12} style={{fontSize: '20px'}}>
@@ -133,7 +123,7 @@ const Reviews = ({ product_id, currentProduct, productMetadata }) => {
         </Grid>
       </Box>
       <Modal open={modal} onClose={closeModal} aria-labelledby="add-question-title">
-        <NewReview setModal={setModal} product={currentProduct} metadata={metadata} />
+        <NewReview setModal={setModal} product={currentProduct} metadata={productMetadata} />
       </Modal>
     </div>
     )

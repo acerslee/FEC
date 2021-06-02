@@ -19,24 +19,17 @@ const ImageStyleContainer = styled.div`
   height: 55%;
 `;
 
-const Overview = ({product_id, currentProduct, productMetadata}) => {
-  console.log(productMetadata)
+const Overview = ({product_id, currentProduct, productMetadata, productStyles}) => {
   const [currentProductStyles, setCurrentProductStyles] = useState({});
   const [currentImageSet, setCurrentImageSet] = useState({});
-  const [currentStarRating, setCurrentStarRating] = useState(productMetadata.ratings);
   const [currentStylePrice, setCurrentStylePrice] = useState({});
 
-  //get current product info & its styles
   useEffect(() => {
     const styleUrl = `/proxy/api/fec2/hratx/products/${product_id}/styles`;
-    // const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${product_id}`;
-
-    // axios.get(metaUrl)
-    //   .then(res => setCurrentStarRating(res.data.ratings))
     axios.get(styleUrl)
       .then(styles => {
         setCurrentImageSet(styles.data.results[0])
-        setCurrentProductStyles(styles.data)
+        // setCurrentProductStyles(styles.data)
         setCurrentStylePrice({
           ...currentStylePrice,
           original_price: styles.data.results[0].original_price,
@@ -47,40 +40,36 @@ const Overview = ({product_id, currentProduct, productMetadata}) => {
   }, [product_id]);
 
   const changeStyleDetail = style_id => {
-    for (let i = 0; i < currentProductStyles.results.length; i++) {
-      if (currentProductStyles.results[i].style_id === style_id){
-        setCurrentImageSet(currentProductStyles.results[i])
+    for (let i = 0; i < productStyles.results.length; i++) {
+      if (productStyles.results[i].style_id === style_id){
+        setCurrentImageSet(productStyles.results[i])
         setCurrentStylePrice({
           ...currentStylePrice,
-          original_price: currentProductStyles.results[i].original_price,
-          sale_price: currentProductStyles.results[i].sale_price,
+          original_price: productStyles.results[i].original_price,
+          sale_price: productStyles.results[i].sale_price,
         })
       }
     }
   };
 
   return(
-    <>
-      {Object.keys(currentProductStyles).length !== 0 &&
-        <OverviewContainer>
-          <ImageStyleContainer>
-            <Images
-              currentProductStyles = {currentProductStyles}
-              currentImageSet = {currentImageSet}
-            />
-            <Styles
-              currentProduct = {currentProduct}
-              currentStarRating = {currentStarRating}
-              currentStylePrice = {currentStylePrice}
-              currentProductStyles = {currentProductStyles}
-              changeStyleDetail = {changeStyleDetail}
-              currentImageSet = {currentImageSet}
-            />
-          </ImageStyleContainer>
-          <BottomSection currentProduct = {currentProduct} />
-        </OverviewContainer>
-      }
-    </>
+    <OverviewContainer>
+      <ImageStyleContainer>
+        <Images
+          currentProductStyles = {productStyles}
+          currentImageSet = {currentImageSet}
+        />
+        <Styles
+          currentProduct = {currentProduct}
+          currentStarRating = {productMetadata.ratings}
+          currentStylePrice = {currentStylePrice}
+          currentProductStyles = {productStyles}
+          changeStyleDetail = {changeStyleDetail}
+          currentImageSet = {currentImageSet}
+        />
+      </ImageStyleContainer>
+      <BottomSection currentProduct = {currentProduct} />
+    </OverviewContainer>
   )
 };
 

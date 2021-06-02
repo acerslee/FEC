@@ -12,6 +12,7 @@ const App = () => {
   const [product_id, setProduct_id] = useState(24156);
   const [currentProduct, setCurrentProduct] = useState({});
   const [productMetadata, setProductMetadata] = useState({});
+  const [productStyles, setProductStyles] = useState({});
 
   const renderNewProductId = (id) => {
     setProduct_id(id);
@@ -20,15 +21,17 @@ const App = () => {
   useEffect(() => {
     const productUrl = `/proxy/api/fec2/hratx/products/${product_id}`;
     const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${product_id}`;
+    const styleUrl = `/proxy/api/fec2/hratx/products/${product_id}/styles`;
 
     axios.all([
       axios.get(productUrl),
-      axios.get(metaUrl)
+      axios.get(metaUrl),
+      axios.get(styleUrl)
     ])
     .then(responses => {
-      console.log(responses)
       setCurrentProduct(responses[0].data)
       setProductMetadata(responses[1].data)
+      setProductStyles(responses[2].data)
     })
     .catch(err => console.error('Cannot retrieve product data'))
 
@@ -36,13 +39,14 @@ const App = () => {
 
   return (
     <>
-    {Object.keys(productMetadata).length !== 0 &&
+    {Object.keys(productStyles).length !== 0 &&
       <>
         <Header />
         <Overview
           product_id={product_id}
           currentProduct = {currentProduct}
           productMetadata = {productMetadata}
+          productStyles = {productStyles}
         />
         <RelatedList
           product_id={product_id}
@@ -52,6 +56,8 @@ const App = () => {
         <YourOutfitList
           product_id={product_id}
           currentProduct = {currentProduct}
+          productMetadata = {productMetadata}
+          productStyles = {productStyles}
         />
         <Questions
           product_id={product_id}

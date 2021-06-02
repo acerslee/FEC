@@ -7,7 +7,7 @@ import regeneratorRuntime from 'regenerator-runtime';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import axios from 'axios';
 
-const YourOutfitList = ({product_id, currentProduct}) => {
+const YourOutfitList = ({product_id, currentProduct, productMetadata, productStyles}) => {
   const [storageOutfitItems, setStorageOutfitItems] = useLocalStorageState('outfitItems', [])
   const [outfitItems, setOutfitItems] = useState(storageOutfitItems)
   //initialize outfit list array accordingly to the local storage data
@@ -16,19 +16,17 @@ const YourOutfitList = ({product_id, currentProduct}) => {
   //edit the localstorage array if the outfit list changes
   useEffect (() => setStorageOutfitItems(outfitItems),[outfitItems]);
 
-  const getProductFunction = async () => {
+  const getProductFunction = () => {
     let productData = currentProduct;
+    productData['ratings'] = productMetadata.ratings;
+    productData['image'] = productStyles.results[0].photos[0].thumbnail_url;
 
-    const styleUrl = `/proxy/api/fec2/hratx/products/${product_id}/styles`;
-    const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${product_id}`;
-
-    await axios.get(metaUrl)
-      .then(res => productData['ratings'] = res.data.ratings)
-      .then(() => axios.get(styleUrl))
-      .catch(() => console.error('error, cannot fetch API', err))
-      .then(res => productData['image'] = res.data.results[0].photos[0].thumbnail_url)
-      .then(() => setOutfitItems([...outfitItems, productData]))
-      .catch(err => console.error('error, cannot change outfit items state', err))
+    try{
+      setOutfitItems([...outfitItems, productData])
+    }
+    catch{
+      err => console.error('error, cannot change outfit items state', err)
+    }
   };
 
   const addNewOutfitClick = (productId) => {
