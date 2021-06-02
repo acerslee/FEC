@@ -12,6 +12,10 @@ app.use(bodyParser.json({limit: '50mb', extended: true}));
 
 app.use(express.static(path.join(__dirname, '/dist')));
 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(path.join(__dirname, '/dist/index.html')));
+// });
+
 app.post('/upload_images', (req, res) => {
   var data = qs.stringify({
     'key': '03514aaea9e7500a875ebd93152f4d75',
