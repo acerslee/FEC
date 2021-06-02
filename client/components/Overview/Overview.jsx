@@ -20,7 +20,6 @@ const ImageStyleContainer = styled.div`
 `;
 
 const Overview = ({product_id, currentProduct}) => {
-  // const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductStyles, setCurrentProductStyles] = useState({});
   const [currentImageSet, setCurrentImageSet] = useState({});
   const [currentStarRating, setCurrentStarRating] = useState({});
@@ -28,13 +27,9 @@ const Overview = ({product_id, currentProduct}) => {
 
   //get current product info & its styles
   useEffect(() => {
-
-    // const productUrl = `/proxy/api/fec2/hratx/products/${product_id}`;
     const styleUrl = `/proxy/api/fec2/hratx/products/${product_id}/styles`;
     const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${product_id}`;
 
-    // axios.get(productUrl)
-    //   .then(product => setCurrentProduct(product.data))
     axios.get(metaUrl)
       .then(res => setCurrentStarRating(res.data.ratings))
       .then(() => axios.get(styleUrl))

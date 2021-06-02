@@ -5,8 +5,9 @@ import {CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-rea
 import {PlusCircle} from 'react-bootstrap-icons';
 import regeneratorRuntime from 'regenerator-runtime';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+import axios from 'axios';
 
-const YourOutfitList = ({product_id}) => {
+const YourOutfitList = ({product_id, currentProduct}) => {
   const [storageOutfitItems, setStorageOutfitItems] = useLocalStorageState('outfitItems', [])
   const [outfitItems, setOutfitItems] = useState(storageOutfitItems)
   //initialize outfit list array accordingly to the local storage data
@@ -16,15 +17,12 @@ const YourOutfitList = ({product_id}) => {
   useEffect (() => setStorageOutfitItems(outfitItems),[outfitItems]);
 
   const getProductFunction = async () => {
-    let productData;
+    let productData = currentProduct;
 
-    const productUrl = `/proxy/api/fec2/hratx/products/${product_id}`;
     const styleUrl = `/proxy/api/fec2/hratx/products/${product_id}/styles`;
     const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${product_id}`;
 
-    await axios.get(productUrl)
-      .then(res => productData = res.data)
-      .then(() => axios.get(metaUrl))
+    await axios.get(metaUrl)
       .then(res => productData['ratings'] = res.data.ratings)
       .then(() => axios.get(styleUrl))
       .catch(() => console.error('error, cannot fetch API', err))
@@ -35,13 +33,12 @@ const YourOutfitList = ({product_id}) => {
 
   const addNewOutfitClick = (productId) => {
     let productFound = false;
-
     for (let i = 0; i < outfitItems.length; i++) {
       if (product_id === outfitItems[i].id) {
         productFound = true;
       }
     }
-    if (productFound === false) {
+    if (!productFound) {
       getProductFunction()
     } else return;
   };

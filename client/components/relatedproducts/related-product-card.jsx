@@ -6,10 +6,9 @@ import {StaticRating} from '../../starRating.jsx';
 import regeneratorRuntime from 'regenerator-runtime';
 import axios from 'axios';
 
-const RelatedProductCard = ({id, currentProductId, relatedItemsStyles, name, category, image, price, sendProductId, features, starRating}) => {
+const RelatedProductCard = ({id, currentProductId, currentProduct, relatedItemsStyles, name, category, image, price, sendProductId, features, starRating}) => {
 
   const [openModal, setOpenModal] = useState(false);
-  const [currentProduct, setCurrentProduct] = useState([]);
   const [currentProductStyles, setCurrentProductStyles] = useState([]);
 
   Modal.setAppElement('body');
@@ -19,12 +18,9 @@ const RelatedProductCard = ({id, currentProductId, relatedItemsStyles, name, cat
   }
 
   useEffect(() => {
-    const productUrl = `/proxy/api/fec2/hratx/products/${currentProductId}`;
     const styleUrl = `/proxy/api/fec2/hratx/products/${currentProductId}/styles`;
 
-    axios.get(productUrl)
-      .then(res => setCurrentProduct(res.data))
-      .then(() => axios.get(styleUrl))
+    axios.get(styleUrl)
       .then(res => setCurrentProductStyles(res.data))
       .catch(err => console.error('error updating modal', err))
 

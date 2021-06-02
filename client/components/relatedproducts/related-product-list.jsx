@@ -6,7 +6,7 @@ import regeneratorRuntime from 'regenerator-runtime';
 import axios from 'axios';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
-const RelatedList =  ({product_id, renderNewProductId}) => {
+const RelatedList =  ({product_id, renderNewProductId, currentProduct}) => {
   //array of productIDs based off the productID state
   const [relatedItems, setRelatedItems] = useState([]);
   //array of objects in accordance to the relatedItems
@@ -104,6 +104,7 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
               starRating = {relatedItem.ratings}
               sendProductId = {sendProductId}
               // this information is for the modal
+              currentProduct = {currentProduct}
               currentProductId = {product_id}
               relatedItemsStyles = {relatedItemsStyles}
               features = {relatedItem.features}

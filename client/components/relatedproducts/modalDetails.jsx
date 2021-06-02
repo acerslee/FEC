@@ -73,8 +73,8 @@ const ModalDetails = ({currentProduct, currentProductStyles, relatedItemsStyles,
           </TableRow>
         </TableHead>
         <TableBody>
-          {compareRows.map(row => (
-            <TableRow>
+          {compareRows.map((row, index) => (
+            <TableRow key = {index}>
               <TableCell align="center" style ={{fontSize: 16}}>{row.compare_item_details}</TableCell>
               <TableCell align="center" style ={{fontSize: 16}}>{row.comparison}</TableCell>
               <TableCell align="center" style ={{fontSize: 16}}>{row.current_item_details}</TableCell>
