@@ -3,6 +3,9 @@ const path = require('path');
 const axios = require('axios').default;
 const bodyParser = require('body-parser');
 const qs = require('qs');
+const proxy = require('express-http-proxy');
+
+require('dotenv').config()
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -12,9 +15,17 @@ app.use(bodyParser.json({limit: '50mb', extended: true}));
 
 app.use(express.static(path.join(__dirname, '/dist')));
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(path.join(__dirname, '/dist/index.html')));
-// });
+app.use('/proxy',
+  proxy('https://app-hrsei-api.herokuapp.com/', {
+    proxyReqOptDecorator: function (proxyReqOpts, srcReq) {
+      //you can update headers
+      proxyReqOpts.headers['Authorization'] = process.env.TOKEN;
+      //you can update method
+      // proxyReqOpts.method = 'GET';
+      return proxyReqOpts;
+    }
+  })
+)
 
 app.post('/upload_images', (req, res) => {
   var data = qs.stringify({

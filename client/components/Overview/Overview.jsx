@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import Images from './Images.jsx';
 import Styles from './Styles.jsx';
 import BottomSection from './BottomSection.jsx';
-import api from '../../../api.js';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const OverviewContainer = styled.section`
   display: flex;
@@ -28,11 +28,16 @@ const Overview = ({product_id}) => {
 
   //get current product info & its styles
   useEffect(() => {
-    api.getProduct(product_id)
+
+    const productUrl = `/proxy/api/fec2/hratx/products/${product_id}`;
+    const styleUrl = `/proxy/api/fec2/hratx/products/${product_id}/styles`;
+    const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${product_id}`;
+
+    axios.get(productUrl)
       .then(product => setCurrentProduct(product.data))
-      .then(() => api.getMetadata({product_id}))
+      .then(() => axios.get(metaUrl))
       .then(res => setCurrentStarRating(res.data.ratings))
-      .then(() => api.getProductStyles(product_id))
+      .then(() => axios.get(styleUrl))
       .then(styles => {
         setCurrentImageSet(styles.data.results[0])
         setCurrentProductStyles(styles.data)

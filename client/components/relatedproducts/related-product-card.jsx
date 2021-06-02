@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {StarFill} from 'react-bootstrap-icons';
 import Modal from 'react-modal';
 import ModalDetails from './modalDetails.jsx';
-import api from '../../../api.js';
 import {StaticRating} from '../../starRating.jsx';
 import regeneratorRuntime from 'regenerator-runtime';
+import axios from 'axios';
 
 const RelatedProductCard = ({id, currentProductId, relatedItemsStyles, name, category, image, price, sendProductId, features, starRating}) => {
 
@@ -18,22 +18,17 @@ const RelatedProductCard = ({id, currentProductId, relatedItemsStyles, name, cat
     setOpenModal(!openModal);
   }
 
-  const getCurrentProductInfo = async(currentProductId) => {
-    await api.getProduct(currentProductId)
-      .then(res => setCurrentProduct(res.data))
-      .then(() => api.getProductStyles(currentProductId))
-      .then(res => setCurrentProductStyles(res.data))
-      .catch(err => console.log('error updating modal', err))
-  };
-
   useEffect(() => {
-    getCurrentProductInfo(currentProductId)
-  },[currentProductId])
+    const productUrl = `/proxy/api/fec2/hratx/products/${currentProductId}`;
+    const styleUrl = `/proxy/api/fec2/hratx/products/${currentProductId}/styles`;
 
-  // let uppercaseCategory;
-  // if (category === undefined) {
-  //   uppercaseCategory = category
-  // } else uppercaseCategory = category.toUpperCase();
+    axios.get(productUrl)
+      .then(res => setCurrentProduct(res.data))
+      .then(() => axios.get(styleUrl))
+      .then(res => setCurrentProductStyles(res.data))
+      .catch(err => console.error('error updating modal', err))
+
+  },[currentProductId])
 
   return (
     <div className = 'product-card'>
@@ -49,10 +44,10 @@ const RelatedProductCard = ({id, currentProductId, relatedItemsStyles, name, cat
       />
       <img className = 'product-image' src = {image} alt = {name} loading = 'lazy'/>
       <div className = 'bottom-half-card' onClick = {() => sendProductId(id)}>
-        <p className = 'product-category'>{category.toUpperCase()}</p>
+        <p className = 'product-category' style = {{textTransform: 'uppercase'}}>{category}</p>
         <p className = 'product-name'>{name}</p>
         <p className = 'product-price'>${price}</p>
-        <div className = 'product-rating'><StaticRating data = {starRating} /></div>
+        <StaticRating data = {starRating} />
       </div>
 
       <Modal

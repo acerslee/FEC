@@ -3,9 +3,8 @@ import RelatedProductCard from './related-product-card.jsx';
 import {CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import regeneratorRuntime from 'regenerator-runtime';
-import api from '../../../api.js';
+import axios from 'axios';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
-
 
 const RelatedList =  ({product_id, renderNewProductId}) => {
   //array of productIDs based off the productID state
@@ -19,7 +18,8 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
   }, [product_id])
 
   const relatedIdFunction = async () => {
-    await api.getRelatedProductIds(product_id)
+    const relatedIdUrl = `/proxy/api/fec2/hratx/products/${product_id}/related`;
+    await axios.get(relatedIdUrl)
       .then(res => {
           let distinctRelatedItems = [...new Set(res.data)]
           //removeDuplicateRender ensures the current product DOES NOT appear in the relatedproducts list
@@ -28,7 +28,7 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
           return removeDuplicateRender;
       })
       .then(res => setRelatedItems(res))
-      .catch(err => console.log ('error retrieving the relevant product ids', err))
+      .catch(err => console.error('error retrieving the relevant product ids', err))
   };
 
   useEffect(() => {
@@ -40,13 +40,17 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
     let promiseChain = Promise.resolve();
 
     relatedItems.forEach(item => {
+      const productUrl = `/proxy/api/fec2/hratx/products/${item}`;
+      const styleUrl = `/proxy/api/fec2/hratx/products/${item}/styles`;
+      const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${item}`;
+
       promiseChain = promiseChain
-        .then(() => api.getProduct(item))
-        .catch(err => console.log('error retrieving the product information', err))
+        .then(() => axios.get(productUrl))
+        .catch(err => console.error('error retrieving the product information', err))
         .then(res => renderedItems.push(res.data))
-        .then(() => api.getMetadata({product_id: item}))
+        .then(() => axios.get(metaUrl))
         .then(res => renderedItems[renderedItems.length - 1]['ratings'] = res.data.ratings)
-        .then(() => api.getProductStyles(item))
+        .then(() => axios.get(styleUrl))
         .then(res => {
           setRelatedItemsStyles(res.data) //for the modal
           renderedItems[renderedItems.length - 1]['image'] = res.data.results[0].photos[0].thumbnail_url
@@ -55,7 +59,7 @@ const RelatedList =  ({product_id, renderNewProductId}) => {
              setRelatedItemsData(renderedItems)
           }
         })
-        .catch(err => console.log('error retrieving the product styles', err))
+        .catch(err => console.error('error retrieving the product styles', err))
     })
   };
 

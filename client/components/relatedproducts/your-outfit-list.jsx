@@ -3,9 +3,7 @@ import useLocalStorageState from 'use-local-storage-state';
 import OutfitCard from './your-outfit-card.jsx';
 import {CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import {PlusCircle} from 'react-bootstrap-icons';
-// import 'pure-react-carousel/dist/react-carousel.es.css';
 import regeneratorRuntime from 'regenerator-runtime';
-import api from '../../../api.js';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
 const YourOutfitList = ({product_id}) => {
@@ -20,15 +18,19 @@ const YourOutfitList = ({product_id}) => {
   const getProductFunction = async () => {
     let productData;
 
-    await api.getProduct(product_id)
+    const productUrl = `/proxy/api/fec2/hratx/products/${product_id}`;
+    const styleUrl = `/proxy/api/fec2/hratx/products/${product_id}/styles`;
+    const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${product_id}`;
+
+    await axios.get(productUrl)
       .then(res => productData = res.data)
-      .then(() => api.getMetadata({product_id}))
+      .then(() => axios.get(metaUrl))
       .then(res => productData['ratings'] = res.data.ratings)
-      .then(() => api.getProductStyles(product_id))
-      .catch(() => console.log('error, cannot fetch API', err))
+      .then(() => axios.get(styleUrl))
+      .catch(() => console.error('error, cannot fetch API', err))
       .then(res => productData['image'] = res.data.results[0].photos[0].thumbnail_url)
       .then(() => setOutfitItems([...outfitItems, productData]))
-      .catch(err => console.log('error, cannot change outfit items state', err))
+      .catch(err => console.error('error, cannot change outfit items state', err))
   };
 
   const addNewOutfitClick = (productId) => {
