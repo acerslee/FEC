@@ -30,7 +30,7 @@ const MiniImageStyle = styled.img`
 `;
 
 const PhotoExpand = styled(FaExpand)`
-  color: #FEEEEE;
+  color: #e8e8e8;
   height: 2.5em;
   width: 2.5em;
   position: relative;
@@ -87,10 +87,10 @@ const Images = ({productStyles, currentImageSet}) => {
 
   useEffect(() => {
     if (!Object.keys(currentImageSet).length){
-      setCurrentMainImage(productStyles.results[0].photos[0].thumbnail_url)
+      setCurrentMainImage(productStyles.results[0].photos[0].thumbnail_url || 'https://images.unsplash.com/photo-1529088148495-2d9f231db829?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80')
       setCurrentImageStyleSet(productStyles.results[0].photos)
     } else {
-      setCurrentMainImage(currentImageSet.photos[0].thumbnail_url)
+      setCurrentMainImage(currentImageSet.photos[0].thumbnail_url || 'https://images.unsplash.com/photo-1529088148495-2d9f231db829?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80')
       setCurrentImageStyleSet(currentImageSet.photos);
     }
   },[currentImageSet])
@@ -110,7 +110,7 @@ const Images = ({productStyles, currentImageSet}) => {
             key = {index}
             src = {styleimage.thumbnail_url}
             alt = 'style mini thumbnails'
-            onClick = {() => handleMiniImageClick(styleimage.thumbnail_url)}
+            onClick = {() => handleMiniImageClick(styleimage.thumbnail_url || 'https://images.unsplash.com/photo-1529088148495-2d9f231db829?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80')}
           />
         ))}
       </MiniImagesContainer>

@@ -6,28 +6,15 @@ import {StaticRating} from '../../starRating.jsx';
 // import regeneratorRuntime from 'regenerator-runtime';
 import axios from 'axios';
 
-const RelatedProductCard = ({id, currentProductId, currentProduct, relatedItemsStyles, name, category, image, price, sendProductId, features, starRating, productStyles}) => {
+const RelatedProductCard = ({id, currentProduct, relatedItemsStyles, name, category, image, price, sendProductId, features, starRating, productStyles}) => {
 
   const [openModal, setOpenModal] = useState(false);
-  const [currentProductStyles, setCurrentProductStyles] = useState([]);
 
   Modal.setAppElement('body');
 
   const toggleModal = () => {
     setOpenModal(!openModal);
   }
-
-  // useEffect(() => {
-  //   const styleUrl = `/proxy/api/fec2/hratx/products/${currentProductId}/styles`;
-
-  //   axios.get(styleUrl)
-  //     .then(res => setCurrentProductStyles(res.data))
-  //     .catch(err => console.error('error updating modal', err))
-
-  // },[currentProductId])
-
-  // console.log('nestedapi styles', currentProductStyles);
-  // console.log('styles', productStyles)
 
   return (
     <div className = 'product-card'>
@@ -60,7 +47,6 @@ const RelatedProductCard = ({id, currentProductId, currentProduct, relatedItemsS
         currentProductStyles = {productStyles}
         relatedItemsStyles = {relatedItemsStyles}
         name = {name}
-        currentProductId = {currentProductId}
         category = {category}
         price = {price}
         features = {features}

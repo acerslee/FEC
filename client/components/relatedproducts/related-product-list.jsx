@@ -42,7 +42,7 @@ const RelatedList =  ({product_id, renderNewProductId, currentProduct, productSt
       .then(responses => {
         renderedItems.push(responses[0].data)
         renderedItems[renderedItems.length - 1]['ratings'] = responses[1].data.ratings;
-        renderedItems[renderedItems.length - 1]['image'] = responses[2].data.results[0].photos[0].thumbnail_url
+        renderedItems[renderedItems.length - 1]['image'] = responses[2].data.results[0].photos[0].thumbnail_url || 'https://images.unsplash.com/photo-1529088148495-2d9f231db829?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80'
         setRelatedItemsStyles(responses[2].data)
 
         if (renderedItems.length === relatedItems.length) {
@@ -96,7 +96,6 @@ const RelatedList =  ({product_id, renderNewProductId, currentProduct, productSt
               // this information is for the modal
               productStyles = {productStyles}
               currentProduct = {currentProduct}
-              currentProductId = {product_id}
               relatedItemsStyles = {relatedItemsStyles}
               features = {relatedItem.features}
             />
