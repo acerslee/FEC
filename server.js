@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const qs = require('qs');
 const proxy = require('express-http-proxy');
 
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const port = process.env.PORT || 3000;
 const app = express();
