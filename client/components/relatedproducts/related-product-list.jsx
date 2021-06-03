@@ -6,7 +6,7 @@ import regeneratorRuntime from 'regenerator-runtime';
 import axios from 'axios';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
-const RelatedList =  ({product_id, renderNewProductId, currentProduct}) => {
+const RelatedList =  ({product_id, renderNewProductId, currentProduct, productStyles}) => {
   //array of productIDs based off the productID state
   const [relatedItems, setRelatedItems] = useState([]);
   //array of objects in accordance to the relatedItems
@@ -14,53 +14,44 @@ const RelatedList =  ({product_id, renderNewProductId, currentProduct}) => {
   const[relatedItemsStyles, setRelatedItemsStyles] = useState([]);
 
   useEffect(() => {
-    relatedIdFunction();
-  }, [product_id])
-
-  const relatedIdFunction = async () => {
     const relatedIdUrl = `/proxy/api/fec2/hratx/products/${product_id}/related`;
-    await axios.get(relatedIdUrl)
+
+    axios.get(relatedIdUrl)
       .then(res => {
           let distinctRelatedItems = [...new Set(res.data)]
           let removeDuplicateRender = distinctRelatedItems.filter(outfitId => outfitId !== product_id);
-
           return removeDuplicateRender;
       })
       .then(res => setRelatedItems(res))
       .catch(err => console.error('error retrieving the relevant product ids', err))
-  };
+  }, [product_id])
 
   useEffect(() => {
-    generateRelatedItems(relatedItems);
-  }, [relatedItems])
-
-  const generateRelatedItems = async (relatedItems) => {
     let renderedItems = [];
-    let promiseChain = Promise.resolve();
 
     relatedItems.forEach(item => {
       const productUrl = `/proxy/api/fec2/hratx/products/${item}`;
       const styleUrl = `/proxy/api/fec2/hratx/products/${item}/styles`;
       const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${item}`;
 
-      promiseChain = promiseChain
-        .then(() => axios.get(productUrl))
-        .catch(err => console.error('error retrieving the product information', err))
-        .then(res => renderedItems.push(res.data))
-        .then(() => axios.get(metaUrl))
-        .then(res => renderedItems[renderedItems.length - 1]['ratings'] = res.data.ratings)
-        .then(() => axios.get(styleUrl))
-        .then(res => {
-          setRelatedItemsStyles(res.data) //for the modal
-          renderedItems[renderedItems.length - 1]['image'] = res.data.results[0].photos[0].thumbnail_url
+      axios.all([
+        axios.get(productUrl),
+        axios.get(metaUrl),
+        axios.get(styleUrl)
+      ])
+      .then(responses => {
+        renderedItems.push(responses[0].data)
+        renderedItems[renderedItems.length - 1]['ratings'] = responses[1].data.ratings;
+        renderedItems[renderedItems.length - 1]['image'] = responses[2].data.results[0].photos[0].thumbnail_url
+        setRelatedItemsStyles(responses[1].data)
 
-          if (renderedItems.length === relatedItems.length) {
-             setRelatedItemsData(renderedItems)
-          }
-        })
-        .catch(err => console.error('error retrieving the product styles', err))
+        if (renderedItems.length === relatedItems.length) {
+          setRelatedItemsData(renderedItems)
+        }
+      })
+      .catch(err => console.error('Error retrieving producting info', err))
     })
-  };
+  }, [relatedItems])
 
    //if you click on the card, that productid should be imported into the api request for that product info
   const sendProductId = (id) => {
@@ -103,6 +94,7 @@ const RelatedList =  ({product_id, renderNewProductId, currentProduct}) => {
               starRating = {relatedItem.ratings}
               sendProductId = {sendProductId}
               // this information is for the modal
+              productStyles = {productStyles}
               currentProduct = {currentProduct}
               currentProductId = {product_id}
               relatedItemsStyles = {relatedItemsStyles}

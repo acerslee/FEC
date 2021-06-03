@@ -51,6 +51,7 @@ const App = () => {
           product_id={product_id}
           renderNewProductId={renderNewProductId}
           currentProduct = {currentProduct}
+          productStyles = {productStyles}
         />
         <YourOutfitList
           product_id={product_id}

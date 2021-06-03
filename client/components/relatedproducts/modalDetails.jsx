@@ -63,26 +63,30 @@ const ModalDetails = ({currentProduct, currentProductStyles, relatedItemsStyles,
   let compareRows = rows.filter (row => row !== undefined);
 
   return (
-    <TableContainer className = 'scroll-table'>
-      <Table className={classes.table} stickyHeader = {true} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center" style ={{fontSize: 22}}>{name}</TableCell>
-            <TableCell align="center" style ={{padding: 40}}></TableCell>
-            <TableCell align="center" style ={{fontSize: 22}}>{currentProduct.name}</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {compareRows.map((row, index) => (
-            <TableRow key = {index}>
-              <TableCell align="center" style ={{fontSize: 16}}>{row.compare_item_details}</TableCell>
-              <TableCell align="center" style ={{fontSize: 16}}>{row.comparison}</TableCell>
-              <TableCell align="center" style ={{fontSize: 16}}>{row.current_item_details}</TableCell>
+    <>
+    {compareRows.length &&
+      <TableContainer className = 'scroll-table'>
+        <Table className={classes.table} stickyHeader = {true} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" style ={{fontSize: 22}}>{name}</TableCell>
+              <TableCell align="center" style ={{padding: 40}}></TableCell>
+              <TableCell align="center" style ={{fontSize: 22}}>{currentProduct.name}</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {compareRows.map((row, index) => (
+              <TableRow key = {index}>
+                <TableCell align="center" style ={{fontSize: 16}}>{row.compare_item_details}</TableCell>
+                <TableCell align="center" style ={{fontSize: 16}}>{row.comparison}</TableCell>
+                <TableCell align="center" style ={{fontSize: 16}}>{row.current_item_details}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    }
+  </>
   );
 }
 
