@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import API from '../../../api.js';
 import { HoverRating } from '../../starRating.jsx';
 
 import { makeStyles } from "@material-ui/core/styles";

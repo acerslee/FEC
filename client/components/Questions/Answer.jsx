@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import API from "../../../api";
 import ImageModal from "./ImageModal.jsx";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,14 +30,20 @@ const Answer = ({ product_id, answer, refresh }) => {
   const dateOptions = { month: "long", day: "numeric", year: "numeric" };
 
   const markHelpful = () => {
-    API.markAnswerHelpful(answer.id)
+    const markHelpfulUrl = `/proxy/api/fec2/hratx/qa/answers/${answer.id}/helpful`;
+
+    axios.put(markHelpfulUrl)
       .then(() => setMarkedHelpful(true))
       .then(() => refresh(product_id))
-      .catch((err) => console.log("markHelpful", err));
+      .catch((err) => console.error("markHelpful", err));
   };
 
   const report = () => {
-    API.reportAnswer(answer.id).then(() => refresh(product_id));
+    const reportUrl = `/proxy/api/fec2/hratx/qa/answers/${answer.id}/report`;
+
+    axios.put(reportUrl)
+    .then(() => refresh(product_id))
+    .catch(err => console.error(err))
   };
 
   return (

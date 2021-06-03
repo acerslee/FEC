@@ -15,7 +15,7 @@ app.use(bodyParser.json({limit: '50mb', extended: true}));
 
 app.use(express.static(path.join(__dirname, '/dist')));
 
-//handles all the GET requests
+//handles all API requests to the heroku app
 app.use('/proxy',
   proxy('https://app-hrsei-api.herokuapp.com/', {
     proxyReqOptDecorator: function (proxyReqOpts, srcReq) {

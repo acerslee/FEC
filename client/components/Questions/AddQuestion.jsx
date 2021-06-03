@@ -5,10 +5,10 @@ import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
-import API from "../../../api";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -56,10 +56,13 @@ const AddQuestion = ({ product_id, product_name, refresh }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const postQuestionUrl = `/proxy/api/fec2/hratx/qa/questions/`;
+
     if (verifyEmail(formData.email)) {
-      API.postQuestion(formData)
-        .catch((err) => console.log(err))
-        .then(() => {
+      axios.post(postQuestionUrl, formData)
+        .catch(err => console.error(err))
+        .then(res => {
+          console.log(res)
           setOpen(false);
           refresh(product_id);
         });

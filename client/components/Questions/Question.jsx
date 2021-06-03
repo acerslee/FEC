@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Answer from "./Answer";
 import AddAnswer from "./AddAnswer";
-import API from "../../../api";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,10 +46,12 @@ const Question = ({ product_id, question, searchTerm, refresh }) => {
   };
 
   const markHelpful = () => {
-    API.markQuestionHelpful(question.question_id)
+    const markHelpfulUrl = `/proxy/api/fec2/hratx/qa/questions/${question.question_id}/helpful`;
+
+    axios.put(markHelpfulUrl)
       .then(() => setMarkedHelpful(true))
       .then(() => refresh(product_id))
-      .catch((err) => console.log("markHelpful", err));
+      .catch(err => console.error("markHelpful", err));
   };
 
   return (

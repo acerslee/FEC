@@ -5,10 +5,10 @@ import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
-import API from "../../../api";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -65,7 +65,11 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
       let formDataWithPhotos = JSON.parse(JSON.stringify(formData));
 
       base64Images.forEach((photo) => {
-        imagePromises.push(API.uploadImages(photo));
+        axios.post('/upload_images',photo)
+          .then(res => {
+            imagePromises.push(res.data)
+          })
+          .catch(err => console.error(err))
       });
 
       Promise.all(imagePromises)
@@ -79,7 +83,11 @@ const AddAnswer = ({ product_id, question_id, question, refresh }) => {
           setFormData(formDataWithPhotos);
         })
         .then(() => {
-          API.postAnswer(formDataWithPhotos);
+          const postAnswerUrl = `/proxy/api/fec2/hratx/qa/questions/${formDataWithPhotos.question_id}/answers`;
+
+          axios.post(postAnswerUrl, formDataWithPhotos)
+            .then(res => console.log(res))
+            .catch(err => console.error(err))
         })
         .then(() => {
           setOpen(false);
