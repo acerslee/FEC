@@ -62,7 +62,11 @@ const YourOutfitList = ({product_id, currentProduct, productMetadata, productSty
                 zIndex: '2'
               }}
             >
-              <div data-testid="addition-card" className = 'product-card add-card' onClick = {(event) => addNewOutfitClick(product_id)}>
+              <div
+                data-testid="addition-card"
+                className = 'product-card add-card'
+                onClick = {() => addNewOutfitClick(product_id)}
+              >
                 <FaPlus size = {55}
                    style = {{
                      display: 'block',
@@ -100,7 +104,7 @@ const YourOutfitList = ({product_id, currentProduct, productMetadata, productSty
         <div className = 'buttons'>
           <ButtonBack className = 'button-back' aria-label = 'scroll-back'><FaArrowLeft /></ButtonBack>
           <ButtonNext className = 'button-next' aria-label = 'scroll-next'><FaArrowRight /></ButtonNext>
-      </div>
+        </div>
       </CarouselProvider>
     </div>
   )

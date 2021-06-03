@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import API from '../../../api.js';
 import { StaticRating } from '../../starRating.jsx';
 import Body from './body.jsx';
 import ImageModal from './ImageModal.jsx';
+import axios from 'axios';
 var moment = require('moment');
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,40 +24,35 @@ const ReviewCard = ({ reviewCard, setReviewCards, product_id }) => {
   const date = moment(reviewCard.date, 'YYYY-MM-DD').format('MMMM D, YYYY');
   const [helpful, setHelpful] = useState([]);
 
+  const reviewCardUrl = `/proxy/api/fec2/hratx/reviews/?product_id=${product_id}&sort=${document.getElementById('sort').value}&count=100`;
+
   function handleHelpful(e) {
     const review_id = e.target.getAttribute('data');
 
     if (!helpful.includes(review_id)) {
       setHelpful(review_id);
+      const helpfulClickUrl = `/proxy/api/fec2/hratx/reviews/${review_id}/helpful`;
 
-      API.updateHelpful(review_id, {review_id})
-      .then(res => {
-        API.getReviewCards({
-          product_id : product_id,
-          sort: document.getElementById('sort').value,
-          count: 100
-        })
-        .then(res => setReviewCards(res.data.results))
-        .catch(err => console.log(err));
+      axios.put(helpfulClickUrl)
+      .catch(err => console.error(err))
+      .then(() => {
+        return axios.get(reviewCardUrl)
       })
-      .catch(err => console.log(err));
+      .then(res => setReviewCards(res.data.results))
+      .catch(err => console.error(err));
     }
   }
 
   function handleReport(e) {
     const review_id = e.target.getAttribute('data');
-
-    API.updateReport(review_id, {review_id})
-    .then(res => {
-      API.getReviewCards({
-        product_id : product_id,
-        sort: document.getElementById('sort').value,
-        count: 100
+    const reportClickUrl = `/proxy/api/fec2/hratx/reviews/${review_id}/report`;
+      axios.put(reportClickUrl)
+      .catch(err => console.error(err))
+      .then(() => {
+        return axios.get(reviewCardUrl)
       })
-        .then(res => setReviewCards(res.data.results))
-        .catch(err => console.log(err));
-    })
-    .catch(err => console.log(err));
+      .then(res => setReviewCards(res.data.results))
+      .catch(err => console.error(err));
   }
 
   const thumbnails = (

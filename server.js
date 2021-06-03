@@ -27,28 +27,10 @@ app.use('/proxy',
   })
 )
 
-app.post('/postreview', async (req, res) => {
-  try{
-    let options = {
-      method: 'post',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews`,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: process.env.TOKEN
-      },
-      data: req.body
-    }
-    res.status(201).send('successfully created!')
-  }
-  catch(err) {
-    res.status(500).send(err)
-  }
-});
-
 app.post('/upload_images', (req, res) => {
   var data = qs.stringify({
     'key': '03514aaea9e7500a875ebd93152f4d75',
-    'image': req.body.image
+    'image': req.body.photo
   });
   var config = {
     method: 'post',

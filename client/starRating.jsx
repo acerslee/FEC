@@ -55,6 +55,8 @@ function StaticRating(props) {
     .reduce((a, b) => Number(a) + Number(b), 0) /
     Object.values(reviewData).reduce((a, b) => Number(a) + Number(b), 0);
 
+  // if (!values) setValue(0);
+
   const [value, setValue] = React.useState(values);
 
   return (

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import RelatedProductCard from './related-product-card.jsx';
 import {CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import regeneratorRuntime from 'regenerator-runtime';
+// import regeneratorRuntime from 'regenerator-runtime';
 import axios from 'axios';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
@@ -18,9 +18,9 @@ const RelatedList =  ({product_id, renderNewProductId, currentProduct, productSt
 
     axios.get(relatedIdUrl)
       .then(res => {
-          let distinctRelatedItems = [...new Set(res.data)]
-          let removeDuplicateRender = distinctRelatedItems.filter(outfitId => outfitId !== product_id);
-          return removeDuplicateRender;
+        let distinctRelatedItems = [...new Set(res.data)]
+        let removeDuplicateRender = distinctRelatedItems.filter(outfitId => outfitId !== product_id);
+        return removeDuplicateRender;
       })
       .then(res => setRelatedItems(res))
       .catch(err => console.error('error retrieving the relevant product ids', err))

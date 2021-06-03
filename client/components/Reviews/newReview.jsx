@@ -96,7 +96,7 @@ const NewReview = ({ product, metadata, setModal }) => {
 
       let imageURLs = [];
       base64Images.forEach(photo => {
-        API.uploadImages(photo)
+        axios.post('/upload_images', photo)
           .then(res => {
             imageURLs.push(res.data.data.url);
           })
@@ -123,7 +123,7 @@ const NewReview = ({ product, metadata, setModal }) => {
         characteristics: characteristics
       };
 
-      axios.post('/postreview', json)
+      axios.post('/proxy/api/fec2/hratx/reviews/', json)
         .then(res => console.log(res))
         .catch(err => console.error(err))
     }
