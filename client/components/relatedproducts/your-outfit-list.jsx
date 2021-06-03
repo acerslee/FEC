@@ -2,10 +2,7 @@ import React, {useState, useEffect} from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import OutfitCard from './your-outfit-card.jsx';
 import {CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
-import {PlusCircle} from 'react-bootstrap-icons';
-import regeneratorRuntime from 'regenerator-runtime';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
-import axios from 'axios';
+import { FaPlus, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const YourOutfitList = ({product_id, currentProduct, productMetadata, productStyles}) => {
   const [storageOutfitItems, setStorageOutfitItems] = useLocalStorageState('outfitItems', [])
@@ -21,12 +18,7 @@ const YourOutfitList = ({product_id, currentProduct, productMetadata, productSty
     productData['ratings'] = productMetadata.ratings;
     productData['image'] = productStyles.results[0].photos[0].thumbnail_url;
 
-    try{
-      setOutfitItems([...outfitItems, productData])
-    }
-    catch{
-      err => console.error('error, cannot change outfit items state', err)
-    }
+    setOutfitItems([...outfitItems, productData])
   };
 
   const addNewOutfitClick = (productId) => {
@@ -71,7 +63,7 @@ const YourOutfitList = ({product_id, currentProduct, productMetadata, productSty
               }}
             >
               <div data-testid="addition-card" className = 'product-card add-card' onClick = {(event) => addNewOutfitClick(product_id)}>
-                <PlusCircle size = {55}
+                <FaPlus size = {55}
                    style = {{
                      display: 'block',
                   }}

@@ -1,14 +1,17 @@
 import React from 'react';
-import {XCircle} from 'react-bootstrap-icons';
-import {StaticRating} from '../../starRating.jsx';
+import { FaTimesCircle } from 'react-icons/fa';
+import { StaticRating } from '../../starRating.jsx';
 
 const OutfitCard = props => (
   <div className = 'product-card'>
-    <XCircle size = {23} onClick = {() => props.removeListItem(props.id)}
+    <FaTimesCircle
+      size = {23}
+      onClick = {() => props.removeListItem(props.id)}
       style = {{
         position: 'absolute',
         left: '13.5em',
-        top: '1.5em'
+        top: '1.5em',
+        color: '#e8e8e8'
       }}
     />
     <img className = 'product-image' src = {props.image} alt = {props.name} loading = 'lazy'/>

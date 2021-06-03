@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StarFill} from 'react-bootstrap-icons';
+import { FaStar } from 'react-icons/fa';
 import Modal from 'react-modal';
 import ModalDetails from './modalDetails.jsx';
 import {StaticRating} from '../../starRating.jsx';
@@ -28,7 +28,7 @@ const RelatedProductCard = ({id, currentProductId, currentProduct, relatedItemsS
 
   return (
     <div className = 'product-card'>
-      <StarFill
+      <FaStar
         size = {21}
         onClick = {toggleModal}
         style = {{

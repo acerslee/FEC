@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import Images from './Images.jsx';
 import Styles from './Styles.jsx';
 import BottomSection from './BottomSection.jsx';
@@ -20,24 +20,12 @@ const ImageStyleContainer = styled.div`
 `;
 
 const Overview = ({product_id, currentProduct, productMetadata, productStyles}) => {
-  const [currentProductStyles, setCurrentProductStyles] = useState({});
-  const [currentImageSet, setCurrentImageSet] = useState({});
-  const [currentStylePrice, setCurrentStylePrice] = useState({});
-
-  useEffect(() => {
-    const styleUrl = `/proxy/api/fec2/hratx/products/${product_id}/styles`;
-    axios.get(styleUrl)
-      .then(styles => {
-        setCurrentImageSet(styles.data.results[0])
-        // setCurrentProductStyles(styles.data)
-        setCurrentStylePrice({
-          ...currentStylePrice,
-          original_price: styles.data.results[0].original_price,
-          sale_price: styles.data.results[0].sale_price
-        })
-      })
-      .catch(err => console.error('Cannot retrieve Product Info', err))
-  }, [product_id]);
+  const [currentProductStyles, setCurrentProductStyles] = useState(productStyles);
+  const [currentImageSet, setCurrentImageSet] = useState(productStyles.results[0]);
+  const [currentStylePrice, setCurrentStylePrice] = useState({
+    original_price: productStyles.results[0].original_price,
+    sale_price: productStyles.results[0].sale_price
+  });
 
   const changeStyleDetail = style_id => {
     for (let i = 0; i < productStyles.results.length; i++) {

@@ -34,7 +34,6 @@ const App = () => {
       setProductStyles(responses[2].data)
     })
     .catch(err => console.error('Cannot retrieve product data'))
-
   },[product_id])
 
   return (
