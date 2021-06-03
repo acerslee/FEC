@@ -40,7 +40,7 @@ const ModalDetails = ({currentProduct, currentProductStyles, relatedItemsStyles,
     if (compareItemFeature === '❌' && currentItemFeature === '❌') {
       return;
     } else return { compare_item_details: compareItemFeature, comparison, current_item_details: currentItemFeature};
-  }
+  };
 
   const rows = [
     createData(category, 'Category', currentProduct.category),

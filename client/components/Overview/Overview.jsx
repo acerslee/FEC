@@ -3,7 +3,6 @@ import Images from './Images.jsx';
 import Styles from './Styles.jsx';
 import BottomSection from './BottomSection.jsx';
 import styled from 'styled-components';
-import axios from 'axios';
 
 const OverviewContainer = styled.section`
   display: flex;

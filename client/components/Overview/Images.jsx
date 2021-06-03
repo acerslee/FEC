@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import Link from "@material-ui/core/Link";
 import { FaExpand } from 'react-icons/fa';
 
 const ImageContainer = styled.div`

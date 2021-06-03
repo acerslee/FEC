@@ -31,8 +31,8 @@ const RelatedList =  ({product_id, renderNewProductId, currentProduct, productSt
 
     relatedItems.forEach(item => {
       const productUrl = `/proxy/api/fec2/hratx/products/${item}`;
-      const styleUrl = `/proxy/api/fec2/hratx/products/${item}/styles`;
       const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${item}`;
+      const styleUrl = `/proxy/api/fec2/hratx/products/${item}/styles`;
 
       axios.all([
         axios.get(productUrl),
@@ -43,7 +43,7 @@ const RelatedList =  ({product_id, renderNewProductId, currentProduct, productSt
         renderedItems.push(responses[0].data)
         renderedItems[renderedItems.length - 1]['ratings'] = responses[1].data.ratings;
         renderedItems[renderedItems.length - 1]['image'] = responses[2].data.results[0].photos[0].thumbnail_url
-        setRelatedItemsStyles(responses[1].data)
+        setRelatedItemsStyles(responses[2].data)
 
         if (renderedItems.length === relatedItems.length) {
           setRelatedItemsData(renderedItems)

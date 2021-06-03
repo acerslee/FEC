@@ -14,10 +14,6 @@ const App = () => {
   const [productMetadata, setProductMetadata] = useState({});
   const [productStyles, setProductStyles] = useState({});
 
-  const renderNewProductId = (id) => {
-    setProduct_id(id);
-  }
-
   useEffect(() => {
     const productUrl = `/proxy/api/fec2/hratx/products/${product_id}`;
     const metaUrl = `/proxy/api/fec2/hratx/reviews/meta/?product_id=${product_id}`;
@@ -35,6 +31,10 @@ const App = () => {
     })
     .catch(err => console.error('Cannot retrieve product data', err))
   },[product_id])
+
+  const renderNewProductId = (id) => {
+    setProduct_id(id);
+  };
 
   return (
     <>
