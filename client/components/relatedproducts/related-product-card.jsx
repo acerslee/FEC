@@ -3,12 +3,10 @@ import { FaStar } from 'react-icons/fa';
 import Modal from 'react-modal';
 import ModalDetails from './modalDetails.jsx';
 import {StaticRating} from '../../starRating.jsx';
-import regeneratorRuntime from 'regenerator-runtime';
+// import regeneratorRuntime from 'regenerator-runtime';
 import axios from 'axios';
 
 const RelatedProductCard = ({id, currentProductId, currentProduct, relatedItemsStyles, name, category, image, price, sendProductId, features, starRating, productStyles}) => {
-
-  console.log(relatedItemsStyles);
 
   const [openModal, setOpenModal] = useState(false);
   const [currentProductStyles, setCurrentProductStyles] = useState([]);
@@ -27,6 +25,9 @@ const RelatedProductCard = ({id, currentProductId, currentProduct, relatedItemsS
   //     .catch(err => console.error('error updating modal', err))
 
   // },[currentProductId])
+
+  // console.log('nestedapi styles', currentProductStyles);
+  // console.log('styles', productStyles)
 
   return (
     <div className = 'product-card'>

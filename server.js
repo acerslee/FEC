@@ -20,12 +20,29 @@ app.use('/proxy',
     proxyReqOptDecorator: function (proxyReqOpts, srcReq) {
       //you can update headers
       proxyReqOpts.headers['Authorization'] = process.env.TOKEN;
-      //you can update method
-      if (proxyReqOpts.method = 'GET') return proxyReqOpts;
-      if (proxyReqOpts.method = 'POST') return proxyReqOpts;
+
+      return proxyReqOpts;
     }
   })
 )
+
+app.post('/postreview', async (req, res) => {
+  try{
+    let options = {
+      method: 'post',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: process.env.TOKEN
+      },
+      data: req.body
+    }
+    res.status(201).send('successfully created!')
+  }
+  catch(err) {
+    res.status(500).send(err)
+  }
+});
 
 app.post('/upload_images', (req, res) => {
   var data = qs.stringify({

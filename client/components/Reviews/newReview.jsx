@@ -14,6 +14,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 import styled from 'styled-components';
+import axios from 'axios';
 
 const FieldHeader = styled(Typography)`
   font-size: 1.5em !important;
@@ -99,7 +100,7 @@ const NewReview = ({ product, metadata, setModal }) => {
           .then(res => {
             imageURLs.push(res.data.data.url);
           })
-          .catch(err => {console.log(err)});
+          .catch(err => console.error(err));
       })
 
       let characteristics = {};
@@ -122,9 +123,9 @@ const NewReview = ({ product, metadata, setModal }) => {
         characteristics: characteristics
       };
 
-      API.postReview(json)
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+      axios.post('/postreview', json)
+        .then(res => console.log(res))
+        .catch(err => console.error(err))
     }
   }
 
