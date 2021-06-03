@@ -33,7 +33,7 @@ const App = () => {
       setProductMetadata(responses[1].data)
       setProductStyles(responses[2].data)
     })
-    .catch(err => console.error('Cannot retrieve product data'))
+    .catch(err => console.error('Cannot retrieve product data', err))
   },[product_id])
 
   return (

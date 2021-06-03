@@ -49,7 +49,7 @@ const StyleButton = styled(Button)`
   height: 4em;
 `;
 
-const Styles = ({currentProduct, currentStarRating, currentProductStyles, currentStylePrice, changeStyleDetail, currentImageSet}) => {
+const Styles = ({currentProduct, currentStarRating, productStyles, currentStylePrice, changeStyleDetail, currentImageSet}) => {
   const [size, setSize] = useState('');
   const [quantity, setQuantity] = useState(1);
 
@@ -62,7 +62,7 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
   };
 
   let productStyle;
-  if (!Object.keys(currentImageSet).length) productStyle = currentProductStyles.results[0].name;
+  if (!Object.keys(currentImageSet).length) productStyle = productStyles.results[0].name;
   else productStyle = currentImageSet.name;
 
   return(
@@ -99,7 +99,7 @@ const Styles = ({currentProduct, currentStarRating, currentProductStyles, curren
       }
       <p><strong>STYLE></strong> <span style = {{textTransform: 'uppercase'}}>{productStyle}</span></p>
       <ImageContainer>
-        {currentProductStyles.results.map(style => {
+        {productStyles.results.map(style => {
           return(
             <StylesImage
               key = {style.style_id}

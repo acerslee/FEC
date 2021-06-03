@@ -54,8 +54,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-
-const Images = ({currentProductStyles, currentImageSet}) => {
+const Images = ({productStyles, currentImageSet}) => {
   const classes = useStyles();
   const [modalStyle] = useState({
     top: '50%',
@@ -89,8 +88,8 @@ const Images = ({currentProductStyles, currentImageSet}) => {
 
   useEffect(() => {
     if (!Object.keys(currentImageSet).length){
-      setCurrentMainImage(currentProductStyles.results[0].photos[0].thumbnail_url)
-      setCurrentImageStyleSet(currentProductStyles.results[0].photos)
+      setCurrentMainImage(productStyles.results[0].photos[0].thumbnail_url)
+      setCurrentImageStyleSet(productStyles.results[0].photos)
     } else {
       setCurrentMainImage(currentImageSet.photos[0].thumbnail_url)
       setCurrentImageStyleSet(currentImageSet.photos);

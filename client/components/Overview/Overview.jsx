@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Images from './Images.jsx';
 import Styles from './Styles.jsx';
 import BottomSection from './BottomSection.jsx';
@@ -20,12 +20,8 @@ const ImageStyleContainer = styled.div`
 `;
 
 const Overview = ({product_id, currentProduct, productMetadata, productStyles}) => {
-  const [currentProductStyles, setCurrentProductStyles] = useState(productStyles);
-  const [currentImageSet, setCurrentImageSet] = useState(productStyles.results[0]);
-  const [currentStylePrice, setCurrentStylePrice] = useState({
-    original_price: productStyles.results[0].original_price,
-    sale_price: productStyles.results[0].sale_price
-  });
+  const [currentImageSet, setCurrentImageSet] = useState({});
+  const [currentStylePrice, setCurrentStylePrice] = useState({});
 
   const changeStyleDetail = style_id => {
     for (let i = 0; i < productStyles.results.length; i++) {
@@ -40,18 +36,28 @@ const Overview = ({product_id, currentProduct, productMetadata, productStyles}) 
     }
   };
 
+  //when a new item is clicked from the related products, this will update the default overview image and its details.
+  useEffect(() => {
+    setCurrentImageSet(productStyles.results[0]);
+    setCurrentStylePrice({
+      ...currentStylePrice,
+      original_price: productStyles.results[0].original_price,
+      sale_price: productStyles.results[0].sale_price
+    })
+  },[productStyles])
+
   return(
     <OverviewContainer>
       <ImageStyleContainer>
         <Images
-          currentProductStyles = {productStyles}
+          productStyles = {productStyles}
           currentImageSet = {currentImageSet}
         />
         <Styles
           currentProduct = {currentProduct}
           currentStarRating = {productMetadata.ratings}
           currentStylePrice = {currentStylePrice}
-          currentProductStyles = {productStyles}
+          productStyles = {productStyles}
           changeStyleDetail = {changeStyleDetail}
           currentImageSet = {currentImageSet}
         />

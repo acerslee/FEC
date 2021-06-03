@@ -88,7 +88,7 @@ const NewReview = ({ product, metadata, setModal }) => {
       return
     }
 
-    if (rating === null) {
+    if (!rating) {
       alert('Please select a rating');
       return
     } else {
