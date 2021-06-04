@@ -16,13 +16,17 @@ const Ratings = ({ metadata, reviewCards }) => {
   });
 
   const percentage = Math.round(100 * (recommend / totalReviews)) || 0;
-  const totalRatings = Object.values(metadata.ratings).reduce((a, b) => Number(a) + Number(b));
   const stars5 = starBarFill(5);
   const stars4 = starBarFill(4);
   const stars3 = starBarFill(3);
   const stars2 = starBarFill(2);
   const stars1 = starBarFill(1);
   const allStars = [stars5, stars4, stars3, stars2, stars1]
+
+  let totalRatings = 0;
+  if (Object.keys(metadata.ratings).length) {
+    totalRatings = Object.values(metadata.ratings).reduce((a, b) => Number(a) + Number(b))
+  }
 
   const overallRating = Object.entries(metadata.ratings)
     .map(e => Number(e[0]) * Number(e[1]))

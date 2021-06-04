@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
@@ -24,9 +24,9 @@ const useStyles = makeStyles({
   },
 });
 
-function HoverRating() {
-  const [value, setValue] = React.useState(null);
-  const [hover, setHover] = React.useState(-1);
+export function HoverRating() {
+  const [value, setValue] = useState(null);
+  const [hover, setHover] = useState(-1);
   const classes = useStyles();
 
   return (
@@ -47,35 +47,31 @@ function HoverRating() {
   );
 }
 
-function StaticRating(props) {
-  let reviewData = props.data;
+export function StaticRating(props) {
 
-  let values = Object.entries(reviewData).map(e =>
-    Number(e[0]) * Number(e[1]))
-    .reduce((a, b) => Number(a) + Number(b), 0) /
-    Object.values(reviewData).reduce((a, b) => Number(a) + Number(b), 0);
+  const [value, setValue] = useState(0);
 
-  // if (!values) setValue(0);
+  useEffect(() => {
+    let reviewData = props.data;
 
-  const [value, setValue] = React.useState(values);
+    if(!reviewData) setValue(0)
+
+    let values = Object.entries(reviewData).map(e =>
+      Number(e[0]) * Number(e[1]))
+      .reduce((a, b) => Number(a) + Number(b), 0) /
+      Object.values(reviewData).reduce((a, b) => Number(a) + Number(b), 0);
+    setValue(values)
+
+  }, [props.data])
 
   return (
-    <>
-    {value &&
-      <div value={value}>
-        <Rating
-          name="read-only"
-          value={value} readOnly
-          precision={0.25}
-          size={props.size || 'medium'}
-        />
-      </div>
-      }
-    </>
+    <div value={value}>
+      <Rating
+        name="read-only"
+        value={value} readOnly
+        precision={0.25}
+        size={props.size || 'medium'}
+      />
+    </div>
   );
-}
-
-export{
-  HoverRating,
-  StaticRating
 }

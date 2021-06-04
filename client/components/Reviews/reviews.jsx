@@ -25,7 +25,7 @@ const Reviews = ({ product_id, currentProduct, productMetadata }) => {
   let [modal, setModal] = useState(false);
   const classes = useStyles();
 
-  function fetchReviews(sort) {
+  const fetchReviews = (sort) => {
     const reviewUrl = `/proxy/api/fec2/hratx/reviews/?product_id=${product_id}&sort=${sort}&count=100`;
 
     axios.get(reviewUrl)
@@ -35,19 +35,19 @@ const Reviews = ({ product_id, currentProduct, productMetadata }) => {
     .catch(err => console.error(err));
   }
 
-  function handleSort(e) {
+  const handleSort = (e) => {
     fetchReviews(e.target.value);
   }
 
-  function loadMore() {
+  const loadMore = () => {
     updateCount(count + 2);
   }
 
-  function openModal() {
+  const openModal = () => {
     setModal(true);
   }
 
-  function closeModal() {
+  const closeModal = () => {
     setModal(false);
   }
 

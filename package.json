@@ -11,7 +11,7 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "heroku-postbuild": "webpack -p",
-    "dev": "nodemon server.js",
+    "server": "nodemon server.js",
     "build": "webpack",
     "test": "jest --coverage"
   },
