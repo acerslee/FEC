@@ -54,7 +54,7 @@ Fork the repo and clone to your local machine. After completion, follow these st
 
 1. Run `npm init` to initialize node package management setup.
 2. Run `npm install` to download dependencies.
-3. You will need to either set up a `.env.local` or a JS file that's attached to the `.gitignore` file. This file will house the private Github Authentication Token in the following form in your root directory. You can read more about creating a token [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+3. You will need to either set up a `.env` and attach to the `.gitignore` file. This file will house the private Github Authentication Token in the following form in your root directory. You can read more about creating a token [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 
 ## Development
 After installation is complete, proceed to setup the development environment.
