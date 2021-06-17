@@ -3,7 +3,6 @@ import { StaticRating } from '../../starRating.jsx';
 import Body from './body.jsx';
 import ImageModal from './ImageModal.jsx';
 import axios from 'axios';
-var moment = require('moment');
 
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -21,8 +20,18 @@ const useStyles = makeStyles((theme) => ({
 
 const ReviewCard = ({ reviewCard, setReviewCards, product_id }) => {
   const classes = useStyles();
-  const date = moment(reviewCard.date, 'YYYY-MM-DD').format('MMMM D, YYYY');
   const [helpful, setHelpful] = useState([]);
+
+  String.prototype.splice = function(idx, rem, str) {
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+  };
+
+  let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  let time = reviewCard.date.slice(0,10).split('-').reverse()
+  let temp = time[1];
+  time[1] = time[0]
+  time[0] = months[Number(temp)];
+  let formattedDate = time.join(' ').splice(-5, 0, ',')
 
   const reviewCardUrl = `/proxy/api/fec2/hratx/reviews/?product_id=${product_id}&sort=${document.getElementById('sort').value}&count=100`;
 
@@ -83,7 +92,7 @@ const ReviewCard = ({ reviewCard, setReviewCards, product_id }) => {
           <StaticRating data={{[reviewCard.rating]: 1}} />
         </Grid>
         <Grid item xs={6} style={{textAlign: 'right'}}>
-          {reviewCard.reviewer_name} | {date}
+          {reviewCard.reviewer_name} | {formattedDate}
         </Grid>
         <Grid item xs={12} style={{fontWeight: 'bold'}}>
           {reviewCard.summary}
