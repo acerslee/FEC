@@ -65,7 +65,7 @@ export function StaticRating(props) {
   }, [props.data])
 
   return (
-    <div value={value}>
+    <div value={value || 0} >
       <Rating
         name="read-only"
         value={value} readOnly
